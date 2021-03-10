@@ -60,17 +60,29 @@
       <recent name="C:\Projects\supreme-parakeet" />
     </key>
   </component>
-  <component name="RunManager">
-    <configuration name="GUI" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="GUI" />
+  <component name="RunManager" selected="Application.Main">
+    <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="Main" />
       <module name="supreme-parakeet" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="Panel" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="Panel" />
+      <module name="supreme-parakeet" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <list>
+      <item itemvalue="Application.Main" />
+      <item itemvalue="Application.Panel" />
+    </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.GUI" />
+        <item itemvalue="Application.Main" />
+        <item itemvalue="Application.Panel" />
       </list>
     </recent_temporary>
   </component>
@@ -97,14 +109,22 @@
     </option>
   </component>
   <component name="WindowStateProjectService">
-    <state x="421" y="-905" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1615388110796">
+    <state x="608" y="-941" width="1092" height="714" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1615390120380">
       <screen x="7" y="-1080" width="1920" height="1040" />
     </state>
-    <state x="421" y="-905" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1536.824/7.-1080.1920.1040@7.-1080.1920.1040" timestamp="1615388110796" />
+    <state x="608" y="-941" width="1092" height="714" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1536.824/7.-1080.1920.1040@7.-1080.1920.1040" timestamp="1615390120380" />
     <state x="738" y="-758" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1615387852021">
       <screen x="7" y="-1080" width="1920" height="1040" />
     </state>
     <state x="738" y="-758" key="#com.intellij.fileTypes.FileTypeChooser/0.0.1536.824/7.-1080.1920.1040@7.-1080.1920.1040" timestamp="1615387852021" />
+    <state x="772" y="-854" key="#com.intellij.ide.util.MemberChooser" timestamp="1615390971128">
+      <screen x="7" y="-1080" width="1920" height="1040" />
+    </state>
+    <state x="772" y="-854" key="#com.intellij.ide.util.MemberChooser/0.0.1536.824/7.-1080.1920.1040@7.-1080.1920.1040" timestamp="1615390971128" />
+    <state x="883" y="-794" key="#com.intellij.ide.util.TreeClassChooserDialog" timestamp="1615390119592">
+      <screen x="7" y="-1080" width="1920" height="1040" />
+    </state>
+    <state x="883" y="-794" key="#com.intellij.ide.util.TreeClassChooserDialog/0.0.1536.824/7.-1080.1920.1040@7.-1080.1920.1040" timestamp="1615390119592" />
     <state x="688" y="-871" key="#com.intellij.ide.util.frameworkSupport.AddFrameworkSupportDialog" timestamp="1615387792291">
       <screen x="7" y="-1080" width="1920" height="1040" />
     </state>
@@ -113,25 +133,25 @@
       <screen x="7" y="-1080" width="1920" height="1040" />
     </state>
     <state x="747" y="-819" key="FileChooserDialogImpl/0.0.1536.824/7.-1080.1920.1040@7.-1080.1920.1040" timestamp="1615387980121" />
-    <state width="1877" height="154" key="GridCell.Tab.0.bottom" timestamp="1615388650871">
+    <state width="1877" height="218" key="GridCell.Tab.0.bottom" timestamp="1615391834943">
       <screen x="7" y="-1080" width="1920" height="1040" />
     </state>
-    <state width="1877" height="154" key="GridCell.Tab.0.bottom/0.0.1536.824/7.-1080.1920.1040@7.-1080.1920.1040" timestamp="1615388650871" />
-    <state width="1877" height="154" key="GridCell.Tab.0.center" timestamp="1615388650871">
+    <state width="1877" height="218" key="GridCell.Tab.0.bottom/0.0.1536.824/7.-1080.1920.1040@7.-1080.1920.1040" timestamp="1615391834943" />
+    <state width="1877" height="218" key="GridCell.Tab.0.center" timestamp="1615391834943">
       <screen x="7" y="-1080" width="1920" height="1040" />
     </state>
-    <state width="1877" height="154" key="GridCell.Tab.0.center/0.0.1536.824/7.-1080.1920.1040@7.-1080.1920.1040" timestamp="1615388650871" />
-    <state width="1877" height="154" key="GridCell.Tab.0.left" timestamp="1615388650871">
+    <state width="1877" height="218" key="GridCell.Tab.0.center/0.0.1536.824/7.-1080.1920.1040@7.-1080.1920.1040" timestamp="1615391834943" />
+    <state width="1877" height="218" key="GridCell.Tab.0.left" timestamp="1615391834943">
       <screen x="7" y="-1080" width="1920" height="1040" />
     </state>
-    <state width="1877" height="154" key="GridCell.Tab.0.left/0.0.1536.824/7.-1080.1920.1040@7.-1080.1920.1040" timestamp="1615388650871" />
-    <state width="1877" height="154" key="GridCell.Tab.0.right" timestamp="1615388650871">
+    <state width="1877" height="218" key="GridCell.Tab.0.left/0.0.1536.824/7.-1080.1920.1040@7.-1080.1920.1040" timestamp="1615391834943" />
+    <state width="1877" height="218" key="GridCell.Tab.0.right" timestamp="1615391834943">
       <screen x="7" y="-1080" width="1920" height="1040" />
     </state>
-    <state width="1877" height="154" key="GridCell.Tab.0.right/0.0.1536.824/7.-1080.1920.1040@7.-1080.1920.1040" timestamp="1615388650871" />
-    <state x="447" y="-986" key="SettingsEditor" timestamp="1615388038781">
+    <state width="1877" height="218" key="GridCell.Tab.0.right/0.0.1536.824/7.-1080.1920.1040@7.-1080.1920.1040" timestamp="1615391834943" />
+    <state x="447" y="-986" key="SettingsEditor" timestamp="1615389635031">
       <screen x="7" y="-1080" width="1920" height="1040" />
     </state>
-    <state x="447" y="-986" key="SettingsEditor/0.0.1536.824/7.-1080.1920.1040@7.-1080.1920.1040" timestamp="1615388038781" />
+    <state x="447" y="-986" key="SettingsEditor/0.0.1536.824/7.-1080.1920.1040@7.-1080.1920.1040" timestamp="1615389635031" />
   </component>
 </project>
