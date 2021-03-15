@@ -1,13 +1,24 @@
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
-import java.awt.event.MouseMotionListener;
+import java.awt.event.*;
+import java.util.ArrayList;
+import java.util.List;
 
 public class GUI extends JPanel implements MouseListener  {
     int startX, startY, endX, endY;
+    Menu menu = new Menu();
+    List<Figure> figures = new ArrayList<Figure>();
 
     public GUI() {
+        JFrame frame = new JFrame();
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.setTitle("MyGUI");
+        frame.pack();
+        frame.setSize(600,400);
+        frame.setVisible(true);
+        frame.add(this, BorderLayout.CENTER);
+        frame.setJMenuBar(menu.getMenu());
+
         addMouseListener(this);
         MouseMotionListener mouseMotionListener = new MouseMotionListener() {
             @Override
@@ -15,7 +26,6 @@ public class GUI extends JPanel implements MouseListener  {
                 endX = e.getX();
                 endY = e.getY();
                 repaint();
-                System.out.println(endX + " " + endY);
             }
 
             @Override
@@ -29,20 +39,17 @@ public class GUI extends JPanel implements MouseListener  {
     public void paintComponent(Graphics g) {
         super.paintComponent(g);
         g.setColor(Color.BLACK);
-        g.drawLine(startX, startY, endX, endY);
-        g.drawRect(startX, startY,  endX - startX, endY - startY);
-        g.drawOval(startX,startY,endX - startX,endY - startY);
-    }
+        for (Figure figure : figures) {
+            switch (figure.getTypeOfFigure()) {
+                case "oval" -> g.drawOval(figure.startX, figure.startY, figure.getWidth(), figure.getHeight());
+                case "rect" -> g.drawRect(figure.startX, figure.startY, figure.getWidth(), figure.getHeight());
+            }
+        }
 
-    public static void main(String[] arg) {
-        GUI panel = new GUI();
-        JFrame frame = new JFrame();
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setTitle("MyGUI");
-        frame.pack();
-        frame.setSize(600,400);
-        frame.setVisible(true);
-        frame.add(panel, BorderLayout.CENTER);
+        switch (menu.getSelectedFigure()) {
+            case "oval" -> g.drawOval(startX, startY, endX - startX, endY - startY);
+            case "rect" -> g.drawRect(startX, startY, endX - startX, endY - startY);
+        }
     }
 
     @Override
@@ -59,7 +66,12 @@ public class GUI extends JPanel implements MouseListener  {
 
     @Override
     public void mouseReleased(MouseEvent e) {
-
+        Figure figure = null;
+        switch (menu.getSelectedFigure()) {
+            case "oval" -> figure = new Figure("oval", startX, startY, endX, endY);
+            case "rect" -> figure = new Figure("rect", startX, startY, endX, endY);
+        }
+        this.figures.add(figure);
     }
 
     @Override
