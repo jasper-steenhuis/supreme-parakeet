@@ -24,10 +24,14 @@ public class Frame extends JFrame implements MouseListener {
     }
 
     @Override
-    public void paint(Graphics graphic) {
-        super.paint(graphic);
-        graphic.setColor(Color.red);
-        graphic.drawLine(startX, startY, endX, endY);
+    public void paint(Graphics g) {
+        super.paint(g);
+        g.setColor(Color.RED);
+        g.drawRect(100,10,30,40);
+        g.fillRect(10,10,20,10);
+        g.setColor(Color.red);
+        g.drawLine(100, 100, 200, 300);
+        g.drawLine(startX, startY, endX, endY);
     }
 
     @Override
