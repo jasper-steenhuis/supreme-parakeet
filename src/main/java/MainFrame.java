@@ -1,3 +1,8 @@
+
+import java.awt.Component;
+import java.util.ArrayList;
+import java.util.List;
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -6,15 +11,21 @@
 
 /**
  *
- * @author caspe
+ * @author caspe & Jasper
  */
 public class MainFrame extends javax.swing.JFrame {
-
+    
+        private List<Figure> figures = new ArrayList<Figure>();
+        
     /**
      * Creates new form MainFrame
      */
     public MainFrame() {
         initComponents();
+        drawPanel.setSelectedTool("Ellipse");
+        figures = drawPanel.figures;
+        
+       
     }
 
     /**
@@ -24,12 +35,14 @@ public class MainFrame extends javax.swing.JFrame {
      */
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
-    private void initComponents() {
+    private void initComponents()
+    {
 
-        buttonGroupFigures = new javax.swing.ButtonGroup();
+        toolButtonGroup = new javax.swing.ButtonGroup();
         drawPanel = new DrawPanel();
-        jRadioButtonOval = new javax.swing.JRadioButton();
+        moveButton = new javax.swing.JRadioButton();
         jRadioButtonRect = new javax.swing.JRadioButton();
+        jRadioButtonOval = new javax.swing.JRadioButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTree1 = new javax.swing.JTree();
 
@@ -39,27 +52,41 @@ public class MainFrame extends javax.swing.JFrame {
         drawPanel.setLayout(drawPanelLayout);
         drawPanelLayout.setHorizontalGroup(
             drawPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 399, Short.MAX_VALUE)
+            .addGap(0, 403, Short.MAX_VALUE)
         );
         drawPanelLayout.setVerticalGroup(
             drawPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 323, Short.MAX_VALUE)
         );
 
-        buttonGroupFigures.add(jRadioButtonOval);
-        jRadioButtonOval.setSelected(true);
-        jRadioButtonOval.setText("Oval");
-        jRadioButtonOval.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jRadioButtonOvalActionPerformed(evt);
+        toolButtonGroup.add(moveButton);
+        moveButton.setLabel("Move");
+        moveButton.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
+                Move(evt);
             }
         });
 
-        buttonGroupFigures.add(jRadioButtonRect);
+        toolButtonGroup.add(jRadioButtonRect);
         jRadioButtonRect.setText("Rectangle");
-        jRadioButtonRect.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
+        jRadioButtonRect.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
                 jRadioButtonRectActionPerformed(evt);
+            }
+        });
+
+        toolButtonGroup.add(jRadioButtonOval);
+        jRadioButtonOval.setSelected(true);
+        jRadioButtonOval.setText("Oval");
+        jRadioButtonOval.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
+                jRadioButtonOvalActionPerformed(evt);
             }
         });
 
@@ -80,7 +107,9 @@ public class MainFrame extends javax.swing.JFrame {
                 .addComponent(jRadioButtonOval)
                 .addGap(18, 18, 18)
                 .addComponent(jRadioButtonRect)
-                .addContainerGap(458, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addComponent(moveButton)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -88,6 +117,7 @@ public class MainFrame extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jRadioButtonOval)
+                    .addComponent(moveButton)
                     .addComponent(jRadioButtonRect))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
@@ -101,13 +131,20 @@ public class MainFrame extends javax.swing.JFrame {
 
     private void jRadioButtonOvalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButtonOvalActionPerformed
         // TODO add your handling code here:
-        drawPanel.setFigureType("Oval");
+        drawPanel.setSelectedTool("Ellipse");
     }//GEN-LAST:event_jRadioButtonOvalActionPerformed
 
     private void jRadioButtonRectActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButtonRectActionPerformed
         // TODO add your handling code here:
-        drawPanel.setFigureType("Rect");
+        drawPanel.setSelectedTool("Rectangle");
     }//GEN-LAST:event_jRadioButtonRectActionPerformed
+
+    private void Move(java.awt.event.ActionEvent evt)//GEN-FIRST:event_Move
+    {//GEN-HEADEREND:event_Move
+        // TODO add your handling code here:
+        drawPanel.setSelectedTool("Move");
+
+    }//GEN-LAST:event_Move
 
     /**
      * @param args the command line arguments
@@ -135,7 +172,7 @@ public class MainFrame extends javax.swing.JFrame {
             java.util.logging.Logger.getLogger(MainFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
-
+        
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
@@ -145,11 +182,12 @@ public class MainFrame extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.ButtonGroup buttonGroupFigures;
     private DrawPanel drawPanel;
     private javax.swing.JRadioButton jRadioButtonOval;
     private javax.swing.JRadioButton jRadioButtonRect;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTree jTree1;
+    private javax.swing.JRadioButton moveButton;
+    private javax.swing.ButtonGroup toolButtonGroup;
     // End of variables declaration//GEN-END:variables
 }

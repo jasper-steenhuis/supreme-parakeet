@@ -1,5 +1,6 @@
 
 import java.awt.Graphics;
+import patternsCode.Strategy;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -8,7 +9,7 @@ import java.awt.Graphics;
  */
 /**
  *
- * @author caspe
+ * @author caspe & Jasper
  */
 public class Figure {
 
@@ -17,9 +18,10 @@ public class Figure {
     public int endX;
     public int endY;
     private String typeOfFigure;
+    private Strategy strategy;
 
-    public Figure(String typeOfFigure, int startX, int startY, int endX, int endY) {
-        this.typeOfFigure = typeOfFigure;
+    public Figure(Strategy strategy, int startX, int startY, int endX, int endY) {
+        this.strategy = strategy;
         this.startX = startX;
         this.startY = startY;
         this.endX = endX;
@@ -35,7 +37,7 @@ public class Figure {
     }
 
     public String getTypeOfFigure() {
-        return typeOfFigure;
+        return strategy.ObjectToString();
     }
 
 }

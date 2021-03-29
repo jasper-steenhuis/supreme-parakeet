@@ -2,7 +2,8 @@
 import java.awt.*;
 import java.util.ArrayList;
 import java.util.List;
-
+import patternsCode.Ellipse;
+import patternsCode.Rectangle;
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -10,13 +11,13 @@ import java.util.List;
  */
 /**
  *
- * @author caspe
+ * @author caspe & Jasper
  */
 public class DrawPanel extends javax.swing.JPanel {
 
     private int startX, startY, endX, endY;
-    private List<Figure> figures = new ArrayList<Figure>();
-    private String figureType = "Oval";
+    public List<Figure> figures = new ArrayList<Figure>();
+    private String selectedTool = "Oval";
 
     /**
      * Creates new form DrawPanel
@@ -31,27 +32,37 @@ public class DrawPanel extends javax.swing.JPanel {
         g.setColor(Color.BLACK);
         for (Figure figure : figures) {
             switch (figure.getTypeOfFigure()) {
-                case "Oval":
+                case "Ellipse":
                     g.drawOval(figure.startX, figure.startY, figure.getWidth(), figure.getHeight());
                     break;
-                case "Rect":
+                case "Rectangle":
                     g.drawRect(figure.startX, figure.startY, figure.getWidth(), figure.getHeight());
                     break;
+                case "Move" :
+                System.out.println("Move tool selected");
+                break; 
+                 default:
+                System.out.println("No tool selected");
             }
         }
 
-        switch (this.figureType) {
-            case "Oval":
+        switch (this.selectedTool) {
+            case "Ellipse":
                 g.drawOval(startX, startY, endX - startX, endY - startY);
                 break;
-            case "Rect":
+            case "Rectangle":
                 g.drawRect(startX, startY, endX - startX, endY - startY);
                 break;
+            case "Move" :
+                System.out.println("Move tool selected");
+                break;
+            default:
+                System.out.println("No tool selected");
         }
     }
 
-    public void setFigureType(String figureType) {
-        this.figureType = figureType;
+    public void setSelectedTool(String tool) {
+        this.selectedTool = tool;
     }
 
     /**
@@ -104,13 +115,24 @@ public class DrawPanel extends javax.swing.JPanel {
     }//GEN-LAST:event_formMousePressed
 
     private void formMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_formMouseReleased
-        // TODO add your handling code here:
-        Figure figure = new Figure("Oval", startX, startY, endX, endY);;
+        
+        Figure figure = new Figure(null,0,0,0,0);
+        switch(this.selectedTool) 
+        {
+            case "Ellipse" : 
+                figure = new Figure(Ellipse.getInstance(),startX,startY,endX,endY);
+                break;
+            case "Rectangle" : 
+                figure = new Figure(Rectangle.getInstance(),startX,startY,endX,endY);
+                break;
+            case "Move" :
+                System.out.println("Move tool selected");
+                break;
 
-        if (this.figureType == "Rect") {
-            figure = new Figure("Rect", startX, startY, endX, endY);
+            default:
+                System.out.println("No tool selected");  
         }
-
+       
         this.figures.add(figure);
     }//GEN-LAST:event_formMouseReleased
 
