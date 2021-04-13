@@ -2,6 +2,7 @@
 import java.awt.*;
 import java.util.ArrayList;
 import java.util.List;
+import javax.swing.event.TreeModelEvent;
 import javax.swing.tree.DefaultMutableTreeNode;
 import javax.swing.tree.DefaultTreeModel;
 import javax.swing.tree.TreeModel;
@@ -22,7 +23,10 @@ public class DrawPanel extends javax.swing.JPanel {
     public List<Figure> figures = new ArrayList<Figure>();
     public DefaultMutableTreeNode root = new DefaultMutableTreeNode("Figures");
     public TreeModel model = new DefaultTreeModel(root);
+    public TreeModelEvent t;
     private String selectedTool = "Oval";
+    int nodeIndex = 0;
+
 
     /**
      * Creates new form DrawPanel
@@ -30,7 +34,7 @@ public class DrawPanel extends javax.swing.JPanel {
     public DrawPanel() {
         initComponents();
 
-        createNodes(root);
+
     }
 
     @Override
@@ -145,17 +149,18 @@ public class DrawPanel extends javax.swing.JPanel {
                 System.out.println("No tool selected");
         }
         System.out.println(figures.size());
-        createNodes(root);
+        createNodes(root,figure);
+
 
     }//GEN-LAST:event_formMouseReleased
-    private void createNodes(DefaultMutableTreeNode top)
+    private void createNodes(DefaultMutableTreeNode top, Figure fig)
     {
-        // TODO find fix for duplicates
-        for (int i = 0; i < figures.size(); i++)
-        {
-            DefaultMutableTreeNode child = new DefaultMutableTreeNode(figures.get(i).getTypeOfFigure() + " " + i);
+
+            DefaultMutableTreeNode child = new DefaultMutableTreeNode(fig.getTypeOfFigure() + " " + nodeIndex );
             top.add(child);
-        }
+            nodeIndex++;
+
+
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
