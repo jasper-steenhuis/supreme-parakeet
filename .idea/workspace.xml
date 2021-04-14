@@ -49,7 +49,7 @@
   </component>
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../IMDBParser" />
     <property name="project.structure.last.edited" value="Modules" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
@@ -60,7 +60,7 @@
       <recent name="C:\Projects\supreme-parakeet" />
     </key>
   </component>
-  <component name="RunManager">
+  <component name="RunManager" selected="Application.Main">
     <configuration name="GUI" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="GUI" />
       <module name="supreme-parakeet" />
@@ -68,9 +68,30 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="Main" />
+      <module name="supreme-parakeet" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="Panel" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="Panel" />
+      <module name="supreme-parakeet" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <list>
+      <item itemvalue="Application.GUI" />
+      <item itemvalue="Application.Main" />
+      <item itemvalue="Application.Panel" />
+    </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.Main" />
         <item itemvalue="Application.GUI" />
+        <item itemvalue="Application.Panel" />
       </list>
     </recent_temporary>
   </component>
@@ -95,43 +116,85 @@
         </entry>
       </map>
     </option>
+    <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="421" y="-905" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1615388110796">
+    <state x="447" y="-986" key="#Project_Structure" timestamp="1615809525254">
       <screen x="7" y="-1080" width="1920" height="1040" />
     </state>
-    <state x="421" y="-905" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1536.824/7.-1080.1920.1040@7.-1080.1920.1040" timestamp="1615388110796" />
+    <state x="447" y="-986" key="#Project_Structure/0.0.1536.824/7.-1080.1920.1040@7.-1080.1920.1040" timestamp="1615809525254" />
+    <state x="608" y="-941" width="1092" height="714" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1615390120380">
+      <screen x="7" y="-1080" width="1920" height="1040" />
+    </state>
+    <state x="608" y="-941" width="1092" height="714" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1536.824/7.-1080.1920.1040@7.-1080.1920.1040" timestamp="1615390120380" />
     <state x="738" y="-758" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1615387852021">
       <screen x="7" y="-1080" width="1920" height="1040" />
     </state>
     <state x="738" y="-758" key="#com.intellij.fileTypes.FileTypeChooser/0.0.1536.824/7.-1080.1920.1040@7.-1080.1920.1040" timestamp="1615387852021" />
+    <state x="772" y="-854" key="#com.intellij.ide.util.MemberChooser" timestamp="1615810488605">
+      <screen x="7" y="-1080" width="1920" height="1040" />
+    </state>
+    <state x="612" y="179" key="#com.intellij.ide.util.MemberChooser/0.0.1536.824/7.-1080.1920.1040@0.0.1536.824" timestamp="1615803461608" />
+    <state x="772" y="-854" key="#com.intellij.ide.util.MemberChooser/0.0.1536.824/7.-1080.1920.1040@7.-1080.1920.1040" timestamp="1615810488605" />
+    <state x="883" y="-794" key="#com.intellij.ide.util.TreeClassChooserDialog" timestamp="1615390119592">
+      <screen x="7" y="-1080" width="1920" height="1040" />
+    </state>
+    <state x="883" y="-794" key="#com.intellij.ide.util.TreeClassChooserDialog/0.0.1536.824/7.-1080.1920.1040@7.-1080.1920.1040" timestamp="1615390119592" />
     <state x="688" y="-871" key="#com.intellij.ide.util.frameworkSupport.AddFrameworkSupportDialog" timestamp="1615387792291">
       <screen x="7" y="-1080" width="1920" height="1040" />
     </state>
     <state x="688" y="-871" key="#com.intellij.ide.util.frameworkSupport.AddFrameworkSupportDialog/0.0.1536.824/7.-1080.1920.1040@7.-1080.1920.1040" timestamp="1615387792291" />
-    <state x="747" y="-819" key="FileChooserDialogImpl" timestamp="1615387980121">
+    <state x="697" y="-813" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1615801121846">
       <screen x="7" y="-1080" width="1920" height="1040" />
     </state>
-    <state x="747" y="-819" key="FileChooserDialogImpl/0.0.1536.824/7.-1080.1920.1040@7.-1080.1920.1040" timestamp="1615387980121" />
-    <state width="1877" height="154" key="GridCell.Tab.0.bottom" timestamp="1615388650871">
+    <state x="697" y="-813" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1536.824/7.-1080.1920.1040@7.-1080.1920.1040" timestamp="1615801121846" />
+    <state x="747" y="-819" key="FileChooserDialogImpl" timestamp="1615814319461">
       <screen x="7" y="-1080" width="1920" height="1040" />
     </state>
-    <state width="1877" height="154" key="GridCell.Tab.0.bottom/0.0.1536.824/7.-1080.1920.1040@7.-1080.1920.1040" timestamp="1615388650871" />
-    <state width="1877" height="154" key="GridCell.Tab.0.center" timestamp="1615388650871">
+    <state x="747" y="-819" key="FileChooserDialogImpl/0.0.1536.824/7.-1080.1920.1040@7.-1080.1920.1040" timestamp="1615814319461" />
+    <state width="1493" height="113" key="GridCell.Tab.0.bottom" timestamp="1616145392076">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state width="1493" height="113" key="GridCell.Tab.0.bottom/0.0.1536.824/7.-1080.1920.1040@0.0.1536.824" timestamp="1616145392076" />
+    <state width="1877" height="113" key="GridCell.Tab.0.bottom/0.0.1536.824/7.-1080.1920.1040@7.-1080.1920.1040" timestamp="1616143293054" />
+    <state width="1493" height="113" key="GridCell.Tab.0.center" timestamp="1616145392075">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state width="1493" height="113" key="GridCell.Tab.0.center/0.0.1536.824/7.-1080.1920.1040@0.0.1536.824" timestamp="1616145392075" />
+    <state width="1877" height="113" key="GridCell.Tab.0.center/0.0.1536.824/7.-1080.1920.1040@7.-1080.1920.1040" timestamp="1616143293054" />
+    <state width="1493" height="113" key="GridCell.Tab.0.left" timestamp="1616145392075">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state width="1493" height="113" key="GridCell.Tab.0.left/0.0.1536.824/7.-1080.1920.1040@0.0.1536.824" timestamp="1616145392075" />
+    <state width="1877" height="113" key="GridCell.Tab.0.left/0.0.1536.824/7.-1080.1920.1040@7.-1080.1920.1040" timestamp="1616143293053" />
+    <state width="1493" height="113" key="GridCell.Tab.0.right" timestamp="1616145392076">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state width="1493" height="113" key="GridCell.Tab.0.right/0.0.1536.824/7.-1080.1920.1040@0.0.1536.824" timestamp="1616145392076" />
+    <state width="1877" height="113" key="GridCell.Tab.0.right/0.0.1536.824/7.-1080.1920.1040@7.-1080.1920.1040" timestamp="1616143293054" />
+    <state width="1877" height="348" key="GridCell.Tab.1.bottom" timestamp="1615813258987">
       <screen x="7" y="-1080" width="1920" height="1040" />
     </state>
-    <state width="1877" height="154" key="GridCell.Tab.0.center/0.0.1536.824/7.-1080.1920.1040@7.-1080.1920.1040" timestamp="1615388650871" />
-    <state width="1877" height="154" key="GridCell.Tab.0.left" timestamp="1615388650871">
+    <state width="1877" height="348" key="GridCell.Tab.1.bottom/0.0.1536.824/7.-1080.1920.1040@7.-1080.1920.1040" timestamp="1615813258987" />
+    <state width="1877" height="348" key="GridCell.Tab.1.center" timestamp="1615813258987">
       <screen x="7" y="-1080" width="1920" height="1040" />
     </state>
-    <state width="1877" height="154" key="GridCell.Tab.0.left/0.0.1536.824/7.-1080.1920.1040@7.-1080.1920.1040" timestamp="1615388650871" />
-    <state width="1877" height="154" key="GridCell.Tab.0.right" timestamp="1615388650871">
+    <state width="1877" height="348" key="GridCell.Tab.1.center/0.0.1536.824/7.-1080.1920.1040@7.-1080.1920.1040" timestamp="1615813258987" />
+    <state width="1877" height="348" key="GridCell.Tab.1.left" timestamp="1615813258987">
       <screen x="7" y="-1080" width="1920" height="1040" />
     </state>
-    <state width="1877" height="154" key="GridCell.Tab.0.right/0.0.1536.824/7.-1080.1920.1040@7.-1080.1920.1040" timestamp="1615388650871" />
-    <state x="447" y="-986" key="SettingsEditor" timestamp="1615388038781">
+    <state width="1877" height="348" key="GridCell.Tab.1.left/0.0.1536.824/7.-1080.1920.1040@7.-1080.1920.1040" timestamp="1615813258987" />
+    <state width="1877" height="348" key="GridCell.Tab.1.right" timestamp="1615813258987">
       <screen x="7" y="-1080" width="1920" height="1040" />
     </state>
-    <state x="447" y="-986" key="SettingsEditor/0.0.1536.824/7.-1080.1920.1040@7.-1080.1920.1040" timestamp="1615388038781" />
+    <state width="1877" height="348" key="GridCell.Tab.1.right/0.0.1536.824/7.-1080.1920.1040@7.-1080.1920.1040" timestamp="1615813258987" />
+    <state x="447" y="-986" key="SettingsEditor" timestamp="1615389635031">
+      <screen x="7" y="-1080" width="1920" height="1040" />
+    </state>
+    <state x="447" y="-986" key="SettingsEditor/0.0.1536.824/7.-1080.1920.1040@7.-1080.1920.1040" timestamp="1615389635031" />
+    <state x="623" y="-299" key="run.anything.popup" timestamp="1615808134509">
+      <screen x="7" y="-1080" width="1920" height="1040" />
+    </state>
+    <state x="623" y="-299" key="run.anything.popup/0.0.1536.824/7.-1080.1920.1040@7.-1080.1920.1040" timestamp="1615808134509" />
   </component>
 </project>
