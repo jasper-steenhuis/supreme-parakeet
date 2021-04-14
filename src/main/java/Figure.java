@@ -1,5 +1,7 @@
 
 import java.awt.Graphics;
+import java.util.ArrayList;
+import java.util.List;
 import patternsCode.Strategy;
 
 /*
@@ -17,6 +19,8 @@ public class Figure {
     public int startY;
     public int endX;
     public int endY;
+    public boolean selected;
+    public ArrayList<Figure> figures;
     private String typeOfFigure;
     private Strategy strategy;
 
@@ -26,6 +30,17 @@ public class Figure {
         this.startY = startY;
         this.endX = endX;
         this.endY = endY;
+        this.selected = false;
+    }
+    
+    public Figure(Strategy strategy, ArrayList<Figure> figures) {
+        this.strategy = strategy;
+        this.startX = 0;
+        this.startY = 0;
+        this.endX = 0;
+        this.endY = 0;
+        this.selected = false;
+        this.figures = figures;
     }
 
     public int getWidth() {
@@ -39,5 +54,6 @@ public class Figure {
     public String getTypeOfFigure() {
         return strategy.ObjectToString();
     }
-
+    
+    
 }

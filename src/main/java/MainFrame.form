@@ -40,7 +40,11 @@
                       <Component id="jRadioButtonRect" min="-2" max="-2" attributes="0"/>
                       <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
                       <Component id="moveButton" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace max="32767" attributes="0"/>
+                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                      <Component id="selectButton" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                      <Component id="jButtonGroup" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                   </Group>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
@@ -59,6 +63,8 @@
                           <Component id="jRadioButtonOval" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="moveButton" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="jRadioButtonRect" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="selectButton" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="jButtonGroup" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace max="32767" attributes="0"/>
                       <Component id="drawPanel" min="-2" max="-2" attributes="0"/>
@@ -76,7 +82,7 @@
       <Layout>
         <DimensionLayout dim="0">
           <Group type="103" groupAlignment="0" attributes="0">
-              <EmptySpace min="0" pref="409" max="32767" attributes="0"/>
+              <EmptySpace min="0" pref="403" max="32767" attributes="0"/>
           </Group>
         </DimensionLayout>
         <DimensionLayout dim="1">
@@ -120,6 +126,18 @@
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jRadioButtonOvalActionPerformed"/>
       </Events>
     </Component>
+    <Component class="javax.swing.JRadioButton" name="selectButton">
+      <Properties>
+        <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
+          <ComponentRef name="toolButtonGroup"/>
+        </Property>
+        <Property name="text" type="java.lang.String" value="Select"/>
+        <Property name="actionCommand" type="java.lang.String" value="select"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="selectButtonActionPerformed"/>
+      </Events>
+    </Component>
     <Container class="javax.swing.JScrollPane" name="jScrollPane1">
       <AuxValues>
         <AuxValue name="autoScrollPane" type="java.lang.Boolean" value="true"/>
@@ -138,5 +156,13 @@
         </Component>
       </SubComponents>
     </Container>
+    <Component class="javax.swing.JButton" name="jButtonGroup">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Group"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButtonGroupActionPerformed"/>
+      </Events>
+    </Component>
   </SubComponents>
 </Form>
