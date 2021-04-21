@@ -45,11 +45,11 @@ public class MainFrame extends javax.swing.JFrame
      */
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
-    private void initComponents() {
+    private void initComponents()
+    {
 
         toolButtonGroup = new javax.swing.ButtonGroup();
         drawPanel = new DrawPanel();
-        saveButton = new javax.swing.JButton();
         moveButton = new javax.swing.JRadioButton();
         jRadioButtonRect = new javax.swing.JRadioButton();
         jRadioButtonOval = new javax.swing.JRadioButton();
@@ -57,46 +57,26 @@ public class MainFrame extends javax.swing.JFrame
         jScrollPane1 = new javax.swing.JScrollPane();
         jTree1 = new javax.swing.JTree();
         jButtonGroup = new javax.swing.JButton();
+        saveButton = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        saveButton.setText("Save");
-        saveButton.addActionListener(new java.awt.event.ActionListener()
+        toolButtonGroup.add(moveButton);
+        moveButton.setLabel("Move");
+        moveButton.addActionListener(new java.awt.event.ActionListener()
         {
             public void actionPerformed(java.awt.event.ActionEvent evt)
             {
-                saveButtonActionPerformed(evt);
-            }
-        });
-
-        javax.swing.GroupLayout drawPanelLayout = new javax.swing.GroupLayout(drawPanel);
-        drawPanel.setLayout(drawPanelLayout);
-        drawPanelLayout.setHorizontalGroup(
-            drawPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, drawPanelLayout.createSequentialGroup()
-                .addGap(0, 346, Short.MAX_VALUE)
-                .addComponent(saveButton))
-        );
-        drawPanelLayout.setVerticalGroup(
-            drawPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, drawPanelLayout.createSequentialGroup()
-                .addGap(0, 300, Short.MAX_VALUE)
-                .addComponent(saveButton))
-        );
-
-        toolButtonGroup.add(moveButton);
-        moveButton.setLabel("Move");
-        moveButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
                 Move(evt);
             }
         });
 
         toolButtonGroup.add(jRadioButtonRect);
         jRadioButtonRect.setText("Rectangle");
-        jRadioButtonRect.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
+        jRadioButtonRect.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
                 jRadioButtonRectActionPerformed(evt);
             }
         });
@@ -104,8 +84,10 @@ public class MainFrame extends javax.swing.JFrame
         toolButtonGroup.add(jRadioButtonOval);
         jRadioButtonOval.setSelected(true);
         jRadioButtonOval.setText("Oval");
-        jRadioButtonOval.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
+        jRadioButtonOval.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
                 jRadioButtonOvalActionPerformed(evt);
             }
         });
@@ -113,8 +95,10 @@ public class MainFrame extends javax.swing.JFrame
         toolButtonGroup.add(selectButton);
         selectButton.setText("Select");
         selectButton.setActionCommand("select");
-        selectButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
+        selectButton.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
                 selectButtonActionPerformed(evt);
             }
         });
@@ -123,9 +107,21 @@ public class MainFrame extends javax.swing.JFrame
         jScrollPane1.setViewportView(jTree1);
 
         jButtonGroup.setText("Group");
-        jButtonGroup.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
+        jButtonGroup.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
                 jButtonGroupActionPerformed(evt);
+            }
+        });
+
+        saveButton.setText("Save");
+        toolButtonGroup.add(saveButton);
+        saveButton.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
+                saveButtonActionPerformed(evt);
             }
         });
 
@@ -134,12 +130,9 @@ public class MainFrame extends javax.swing.JFrame
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
+                .addGap(23, 23, 23)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(drawPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(23, 23, 23)
                         .addComponent(jRadioButtonOval)
                         .addGap(18, 18, 18)
                         .addComponent(jRadioButtonRect)
@@ -149,8 +142,10 @@ public class MainFrame extends javax.swing.JFrame
                         .addComponent(selectButton)
                         .addGap(18, 18, 18)
                         .addComponent(jButtonGroup)
-                        .addGap(0, 0, Short.MAX_VALUE)))
-
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(saveButton)
+                        .addGap(24, 24, 24))
+                    .addComponent(drawPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
@@ -159,18 +154,19 @@ public class MainFrame extends javax.swing.JFrame
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jRadioButtonOval)
                             .addComponent(moveButton)
                             .addComponent(jRadioButtonRect)
                             .addComponent(selectButton)
-                            .addComponent(jButtonGroup))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(drawPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jScrollPane1))
-                .addContainerGap())
+                            .addComponent(jButtonGroup)
+                            .addComponent(saveButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(drawPanel, javax.swing.GroupLayout.DEFAULT_SIZE, 0, Short.MAX_VALUE)))
+                .addContainerGap(27, Short.MAX_VALUE))
         );
 
         pack();
@@ -191,7 +187,6 @@ public class MainFrame extends javax.swing.JFrame
         // TODO add your handling code here:
         drawPanel.setSelectedTool("Move");
     }//GEN-LAST:event_Move
-
 
     private void selectButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_selectButtonActionPerformed
         // TODO add your handling code here:
@@ -272,8 +267,8 @@ public class MainFrame extends javax.swing.JFrame
     private javax.swing.JScrollPane jScrollPane1;
     public javax.swing.JTree jTree1;
     private javax.swing.JRadioButton moveButton;
-    private javax.swing.JRadioButton selectButton;
     private javax.swing.JButton saveButton;
+    private javax.swing.JRadioButton selectButton;
     private javax.swing.ButtonGroup toolButtonGroup;
     // End of variables declaration//GEN-END:variables
 }
