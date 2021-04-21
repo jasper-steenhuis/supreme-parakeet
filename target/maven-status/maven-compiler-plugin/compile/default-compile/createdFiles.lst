@@ -8,6 +8,7 @@ patternsCode\Ellipse.class
 patternsCode\Group.class
 patternsCode\Rectangle.class
 DrawPanel$1.class
+FileSaver.class
 MainFrame$4.class
 Figure.class
 MainFrame$3.class

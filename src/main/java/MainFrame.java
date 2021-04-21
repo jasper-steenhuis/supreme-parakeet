@@ -1,7 +1,10 @@
 
 import java.awt.Component;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JTree;
 import javax.swing.tree.DefaultMutableTreeNode;
 import javax.swing.tree.DefaultTreeModel;
@@ -20,6 +23,7 @@ public class MainFrame extends javax.swing.JFrame
 {
 
     private List<Figure> figures = new ArrayList<Figure>();
+    FileSaver fileSaver = new FileSaver();
 
     /**
      * Creates new form MainFrame
@@ -45,6 +49,7 @@ public class MainFrame extends javax.swing.JFrame
 
         toolButtonGroup = new javax.swing.ButtonGroup();
         drawPanel = new DrawPanel();
+        saveButton = new javax.swing.JButton();
         moveButton = new javax.swing.JRadioButton();
         jRadioButtonRect = new javax.swing.JRadioButton();
         jRadioButtonOval = new javax.swing.JRadioButton();
@@ -55,15 +60,29 @@ public class MainFrame extends javax.swing.JFrame
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
+        saveButton.setText("Save");
+        saveButton.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
+                saveButtonActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout drawPanelLayout = new javax.swing.GroupLayout(drawPanel);
         drawPanel.setLayout(drawPanelLayout);
         drawPanelLayout.setHorizontalGroup(
             drawPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 403, Short.MAX_VALUE)
+
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, drawPanelLayout.createSequentialGroup()
+                .addGap(0, 346, Short.MAX_VALUE)
+                .addComponent(saveButton))
         );
         drawPanelLayout.setVerticalGroup(
             drawPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 323, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, drawPanelLayout.createSequentialGroup()
+                .addGap(0, 300, Short.MAX_VALUE)
+                .addComponent(saveButton))
         );
 
         toolButtonGroup.add(moveButton);
@@ -131,6 +150,7 @@ public class MainFrame extends javax.swing.JFrame
                         .addGap(18, 18, 18)
                         .addComponent(jButtonGroup)
                         .addGap(0, 0, Short.MAX_VALUE)))
+
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
@@ -172,6 +192,7 @@ public class MainFrame extends javax.swing.JFrame
         drawPanel.setSelectedTool("Move");
     }//GEN-LAST:event_Move
 
+
     private void selectButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_selectButtonActionPerformed
         // TODO add your handling code here:
         drawPanel.setSelectedTool("Select");
@@ -181,6 +202,18 @@ public class MainFrame extends javax.swing.JFrame
         // TODO add your handling code here:
         drawPanel.group();
     }//GEN-LAST:event_jButtonGroupActionPerformed
+
+    private void saveButtonActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_saveButtonActionPerformed
+    {//GEN-HEADEREND:event_saveButtonActionPerformed
+        try
+        {
+            fileSaver.Save(drawPanel.figures);
+        }
+        catch (IOException ex)
+        {
+            Logger.getLogger(MainFrame.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_saveButtonActionPerformed
 
     /**
      * @param args the command line arguments
@@ -240,6 +273,7 @@ public class MainFrame extends javax.swing.JFrame
     public javax.swing.JTree jTree1;
     private javax.swing.JRadioButton moveButton;
     private javax.swing.JRadioButton selectButton;
+    private javax.swing.JButton saveButton;
     private javax.swing.ButtonGroup toolButtonGroup;
     // End of variables declaration//GEN-END:variables
 }
