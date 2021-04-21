@@ -1,12 +1,14 @@
 
 import java.awt.*;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 import javax.swing.event.TreeModelEvent;
 import javax.swing.tree.DefaultMutableTreeNode;
 import javax.swing.tree.DefaultTreeModel;
 import javax.swing.tree.TreeModel;
 import patternsCode.Ellipse;
+import patternsCode.Group;
 import patternsCode.Rectangle;
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -20,6 +22,7 @@ import patternsCode.Rectangle;
 public class DrawPanel extends javax.swing.JPanel {
 
     private int startX, startY, endX, endY;
+    private int oldEndX, oldEndY;
     public List<Figure> figures = new ArrayList<Figure>();
     public DefaultMutableTreeNode root = new DefaultMutableTreeNode("Figures");
     public TreeModel model = new DefaultTreeModel(root);
@@ -38,11 +41,21 @@ public class DrawPanel extends javax.swing.JPanel {
 
     }
 
-    @Override
-    protected void paintComponent(Graphics g) {
-        super.paintComponent(g); //To change body of generated methods, choose Tools | Templates.
-        g.setColor(Color.BLACK);
+    private void draw(Graphics g, List<Figure> figures) {
         for (Figure figure : figures) {
+            if (figure.selected) {
+                g.setColor(Color.RED);
+                if(selectedTool == "Move") {
+                    int deltaX = endX - oldEndX;
+                    int deltaY = endY - oldEndY;
+                    figure.startX += deltaX;
+                    figure.startY += deltaY;
+                    figure.endX += deltaX;
+                    figure.endY += deltaY;
+                }
+            } else {
+                g.setColor(Color.BLACK);
+            }
             switch (figure.getTypeOfFigure()) {
                 case "Ellipse":
                     g.drawOval(figure.startX, figure.startY, figure.getWidth(), figure.getHeight());
@@ -50,13 +63,37 @@ public class DrawPanel extends javax.swing.JPanel {
                 case "Rectangle":
                     g.drawRect(figure.startX, figure.startY, figure.getWidth(), figure.getHeight());
                     break;
+                case "Group" :
+                    this.draw(g, figure.figures);
+                    break;
                 case "Move" :
-                System.out.println("Move tool selected");
-                break;
+                    System.out.println("Move tool selected");
+                    break;
+                case "Select" :
+                    System.out.println("Select tool selected");
+                    break;
                  default:
                 System.out.println("No tool selected");
             }
+            if (this.selectedTool == "Select") {
+                if (figure.endX < endX && figure.endY < endY && figure.startX > startX && figure.startY > startY) {
+                    figure.selected = true;
+                } else {
+                    figure.selected = false;
+                }
+            }
         }
+    }
+    
+    @Override
+    protected void paintComponent(Graphics g) {
+        super.paintComponent(g); //To change body of generated methods, choose Tools | Templates.
+        System.out.println("Repaint");
+        for (Figure figure : figures) {
+            System.out.println(figure.getTypeOfFigure());
+        }
+
+        draw(g, figures);
 
         switch (this.selectedTool) {
             case "Ellipse":
@@ -68,13 +105,34 @@ public class DrawPanel extends javax.swing.JPanel {
             case "Move" :
                 System.out.println("Move tool selected");
                 break;
+            case "Select" :
+                g.setColor(Color.BLUE);
+                g.drawRect(startX, startY, endX - startX, endY - startY);
+                break;
             default:
                 System.out.println("No tool selected");
         }
+        
+        oldEndX = endX; 
+        oldEndY = endY;
     }
-
+    
     public void setSelectedTool(String tool) {
         this.selectedTool = tool;
+    }
+    
+    public void group() {
+        ArrayList<Figure> arrayListGroup = new ArrayList<Figure>();
+        int startX = 0, startY = 0, endX = 0, endY = 0;
+        for (Iterator<Figure> it = figures.iterator(); it.hasNext();) {
+            Figure figure = it.next();
+            if (figure.selected) {
+                arrayListGroup.add(figure);
+                it.remove();
+            }
+        }
+        Figure figureGroup = new Figure(Group.getInstance(), arrayListGroup);
+        figures.add(figureGroup);
     }
 
     /**
@@ -113,7 +171,7 @@ public class DrawPanel extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void formMouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_formMouseDragged
-       if(selectedTool == "Ellipse" || selectedTool == "Rectangle")
+       if(selectedTool == "Ellipse" || selectedTool == "Rectangle" || selectedTool == "Select" || selectedTool == "Move")
        {
             endX = evt.getX();
             endY = evt.getY();
@@ -122,7 +180,7 @@ public class DrawPanel extends javax.swing.JPanel {
     }//GEN-LAST:event_formMouseDragged
 
     private void formMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_formMousePressed
-        if(selectedTool == "Ellipse" || selectedTool == "Rectangle")
+        if(selectedTool == "Ellipse" || selectedTool == "Rectangle" || selectedTool == "Select" || selectedTool == "Move")
        {
             startX = evt.getX();
             startY = evt.getY();
@@ -146,6 +204,9 @@ public class DrawPanel extends javax.swing.JPanel {
             case "Move" :
                 System.out.println("Move tool selected");
                 break;
+            case "Select" :
+                System.out.println("Select tool selected");
+                break;
             default:
                 System.out.println("No tool selected");
         }
@@ -154,6 +215,7 @@ public class DrawPanel extends javax.swing.JPanel {
 
 
     }//GEN-LAST:event_formMouseReleased
+
     private void createNodes(DefaultMutableTreeNode top, Figure fig)
     {
 

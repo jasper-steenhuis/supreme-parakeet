@@ -45,8 +45,7 @@ public class MainFrame extends javax.swing.JFrame
      */
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
-    private void initComponents()
-    {
+    private void initComponents() {
 
         toolButtonGroup = new javax.swing.ButtonGroup();
         drawPanel = new DrawPanel();
@@ -54,8 +53,10 @@ public class MainFrame extends javax.swing.JFrame
         moveButton = new javax.swing.JRadioButton();
         jRadioButtonRect = new javax.swing.JRadioButton();
         jRadioButtonOval = new javax.swing.JRadioButton();
+        selectButton = new javax.swing.JRadioButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTree1 = new javax.swing.JTree();
+        jButtonGroup = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -72,6 +73,7 @@ public class MainFrame extends javax.swing.JFrame
         drawPanel.setLayout(drawPanelLayout);
         drawPanelLayout.setHorizontalGroup(
             drawPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, drawPanelLayout.createSequentialGroup()
                 .addGap(0, 346, Short.MAX_VALUE)
                 .addComponent(saveButton))
@@ -85,20 +87,16 @@ public class MainFrame extends javax.swing.JFrame
 
         toolButtonGroup.add(moveButton);
         moveButton.setLabel("Move");
-        moveButton.addActionListener(new java.awt.event.ActionListener()
-        {
-            public void actionPerformed(java.awt.event.ActionEvent evt)
-            {
+        moveButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
                 Move(evt);
             }
         });
 
         toolButtonGroup.add(jRadioButtonRect);
         jRadioButtonRect.setText("Rectangle");
-        jRadioButtonRect.addActionListener(new java.awt.event.ActionListener()
-        {
-            public void actionPerformed(java.awt.event.ActionEvent evt)
-            {
+        jRadioButtonRect.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jRadioButtonRectActionPerformed(evt);
             }
         });
@@ -106,16 +104,30 @@ public class MainFrame extends javax.swing.JFrame
         toolButtonGroup.add(jRadioButtonOval);
         jRadioButtonOval.setSelected(true);
         jRadioButtonOval.setText("Oval");
-        jRadioButtonOval.addActionListener(new java.awt.event.ActionListener()
-        {
-            public void actionPerformed(java.awt.event.ActionEvent evt)
-            {
+        jRadioButtonOval.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jRadioButtonOvalActionPerformed(evt);
+            }
+        });
+
+        toolButtonGroup.add(selectButton);
+        selectButton.setText("Select");
+        selectButton.setActionCommand("select");
+        selectButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                selectButtonActionPerformed(evt);
             }
         });
 
         jTree1.setExpandsSelectedPaths(false);
         jScrollPane1.setViewportView(jTree1);
+
+        jButtonGroup.setText("Group");
+        jButtonGroup.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonGroupActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -132,7 +144,13 @@ public class MainFrame extends javax.swing.JFrame
                         .addGap(18, 18, 18)
                         .addComponent(jRadioButtonRect)
                         .addGap(18, 18, 18)
-                        .addComponent(moveButton)))
+                        .addComponent(moveButton)
+                        .addGap(18, 18, 18)
+                        .addComponent(selectButton)
+                        .addGap(18, 18, 18)
+                        .addComponent(jButtonGroup)
+                        .addGap(0, 0, Short.MAX_VALUE)))
+
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
@@ -146,7 +164,9 @@ public class MainFrame extends javax.swing.JFrame
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jRadioButtonOval)
                             .addComponent(moveButton)
-                            .addComponent(jRadioButtonRect))
+                            .addComponent(jRadioButtonRect)
+                            .addComponent(selectButton)
+                            .addComponent(jButtonGroup))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(drawPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jScrollPane1))
@@ -170,8 +190,18 @@ public class MainFrame extends javax.swing.JFrame
     {//GEN-HEADEREND:event_Move
         // TODO add your handling code here:
         drawPanel.setSelectedTool("Move");
-
     }//GEN-LAST:event_Move
+
+
+    private void selectButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_selectButtonActionPerformed
+        // TODO add your handling code here:
+        drawPanel.setSelectedTool("Select");
+    }//GEN-LAST:event_selectButtonActionPerformed
+
+    private void jButtonGroupActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonGroupActionPerformed
+        // TODO add your handling code here:
+        drawPanel.group();
+    }//GEN-LAST:event_jButtonGroupActionPerformed
 
     private void saveButtonActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_saveButtonActionPerformed
     {//GEN-HEADEREND:event_saveButtonActionPerformed
@@ -236,11 +266,13 @@ public class MainFrame extends javax.swing.JFrame
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private DrawPanel drawPanel;
+    private javax.swing.JButton jButtonGroup;
     private javax.swing.JRadioButton jRadioButtonOval;
     private javax.swing.JRadioButton jRadioButtonRect;
     private javax.swing.JScrollPane jScrollPane1;
     public javax.swing.JTree jTree1;
     private javax.swing.JRadioButton moveButton;
+    private javax.swing.JRadioButton selectButton;
     private javax.swing.JButton saveButton;
     private javax.swing.ButtonGroup toolButtonGroup;
     // End of variables declaration//GEN-END:variables
