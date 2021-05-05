@@ -23,7 +23,6 @@ public class MainFrame extends javax.swing.JFrame
 {
 
     private List<Figure> figures = new ArrayList<Figure>();
-    FileSaver fileSaver = new FileSaver();
 
     /**
      * Creates new form MainFrame
@@ -33,6 +32,7 @@ public class MainFrame extends javax.swing.JFrame
         initComponents();
         drawPanel.setSelectedTool("Ellipse");
         figures = drawPanel.figures;
+        //fileHandler.figuresToSave = drawPanel.figures;
 
         jTree1.setModel(drawPanel.model);
 
@@ -200,9 +200,11 @@ public class MainFrame extends javax.swing.JFrame
 
     private void saveButtonActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_saveButtonActionPerformed
     {//GEN-HEADEREND:event_saveButtonActionPerformed
+        FileHandler fileHandler = new FileHandler(drawPanel);
         try
         {
-            fileSaver.Save(drawPanel.figures);
+            //fileHandler.Save(drawPanel.figures);
+            fileHandler.createAndShowGUI();
         }
         catch (IOException ex)
         {
