@@ -12,26 +12,29 @@ package patternsCode;
 public class Rectangle implements Strategy
 {
 
-    private final String name = "Rectangle";
-    private static final Rectangle instance = new Rectangle();
+    private String name = "Rectangle";
+    private static Rectangle instance = new Rectangle();
+
     @Override
     public void draw()
     {
 
     }
+
     @Override
     public String ObjectToString()
     {
         return instance.name;
     }
+
     private Rectangle()
     {
 
-
     }
+
     public static Rectangle getInstance()
     {
         return instance;
     }
-    
+
 }

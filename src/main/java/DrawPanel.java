@@ -10,16 +10,21 @@ import javax.swing.tree.TreeModel;
 import patternsCode.Ellipse;
 import patternsCode.Group;
 import patternsCode.Rectangle;
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+ * and open the template in
+    private String selectedTool = "Oval";
+    int nodeIndex = 0;
+    public Graphics gc; the editor.
  */
 /**
  *
  * @author caspe & Jasper
  */
-public class DrawPanel extends javax.swing.JPanel {
+public class DrawPanel extends javax.swing.JPanel
+{
 
     private int startX, startY, endX, endY;
     private int oldEndX, oldEndY;
@@ -29,23 +34,26 @@ public class DrawPanel extends javax.swing.JPanel {
     public TreeModelEvent t;
     private String selectedTool = "Oval";
     int nodeIndex = 0;
-
-
+    public Graphics gc;
 
     /**
      * Creates new form DrawPanel
      */
-    public DrawPanel() {
+    public DrawPanel()
+    {
         initComponents();
-
 
     }
 
-    private void draw(Graphics g, List<Figure> figures) {
-        for (Figure figure : figures) {
-            if (figure.selected) {
+    public void draw(Graphics g, List<Figure> figures)
+    {
+        for (Figure figure : figures)
+        {
+            if (figure.selected)
+            {
                 g.setColor(Color.RED);
-                if(selectedTool == "Move") {
+                if (selectedTool == "Move")
+                {
                     int deltaX = endX - oldEndX;
                     int deltaY = endY - oldEndY;
                     figure.startX += deltaX;
@@ -53,80 +61,93 @@ public class DrawPanel extends javax.swing.JPanel {
                     figure.endX += deltaX;
                     figure.endY += deltaY;
                 }
-            } else {
+            } else
+            {
                 g.setColor(Color.BLACK);
             }
-            switch (figure.getTypeOfFigure()) {
+            switch (figure.getTypeOfFigure())
+            {
                 case "Ellipse":
                     g.drawOval(figure.startX, figure.startY, figure.getWidth(), figure.getHeight());
                     break;
                 case "Rectangle":
                     g.drawRect(figure.startX, figure.startY, figure.getWidth(), figure.getHeight());
                     break;
-                case "Group" :
+                case "Group":
                     this.draw(g, figure.figures);
                     break;
-                case "Move" :
+                case "Move":
                     System.out.println("Move tool selected");
                     break;
-                case "Select" :
+                case "Select":
                     System.out.println("Select tool selected");
                     break;
-                 default:
-                System.out.println("No tool selected");
+                default:
+                    System.out.println("No tool selected");
             }
-            if (this.selectedTool == "Select") {
-                if (figure.endX < endX && figure.endY < endY && figure.startX > startX && figure.startY > startY) {
+            if (this.selectedTool == "Select")
+            {
+                if (figure.endX < endX && figure.endY < endY && figure.startX > startX && figure.startY > startY)
+                {
                     figure.selected = true;
-                } else {
+                } else
+                {
                     figure.selected = false;
                 }
             }
         }
     }
-    
+
     @Override
-    protected void paintComponent(Graphics g) {
-        super.paintComponent(g); //To change body of generated methods, choose Tools | Templates.
+    protected void paintComponent(Graphics g)
+    {
+        gc = g;
+        super.paintComponent(gc); //To change body of generated methods, choose Tools | Templates.
         System.out.println("Repaint");
-        for (Figure figure : figures) {
+        for (Figure figure : figures)
+        {
             System.out.println(figure.getTypeOfFigure());
         }
 
-        draw(g, figures);
+        draw(gc, figures);
 
-        switch (this.selectedTool) {
+        switch (this.selectedTool)
+        {
             case "Ellipse":
                 g.drawOval(startX, startY, endX - startX, endY - startY);
                 break;
             case "Rectangle":
                 g.drawRect(startX, startY, endX - startX, endY - startY);
                 break;
-            case "Move" :
+            case "Move":
                 System.out.println("Move tool selected");
                 break;
-            case "Select" :
+            case "Select":
                 g.setColor(Color.BLUE);
                 g.drawRect(startX, startY, endX - startX, endY - startY);
                 break;
             default:
                 System.out.println("No tool selected");
         }
-        
-        oldEndX = endX; 
+
+        oldEndX = endX;
         oldEndY = endY;
     }
-    
-    public void setSelectedTool(String tool) {
+
+    public void setSelectedTool(String tool)
+    {
         this.selectedTool = tool;
     }
-    
-    public void group() {
+
+    public void group()
+    {
         ArrayList<Figure> arrayListGroup = new ArrayList<Figure>();
         int startX = 0, startY = 0, endX = 0, endY = 0;
-        for (Iterator<Figure> it = figures.iterator(); it.hasNext();) {
+        for (Iterator<Figure> it = figures.iterator(); it.hasNext();)
+        {
             Figure figure = it.next();
-            if (figure.selected) {
+            if (figure.selected)
+            {
                 arrayListGroup.add(figure);
                 it.remove();
             }
@@ -171,58 +192,58 @@ public class DrawPanel extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void formMouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_formMouseDragged
-       if(selectedTool == "Ellipse" || selectedTool == "Rectangle" || selectedTool == "Select" || selectedTool == "Move")
-       {
+        if (selectedTool == "Ellipse" || selectedTool == "Rectangle" || selectedTool == "Select" || selectedTool == "Move")
+        {
             endX = evt.getX();
             endY = evt.getY();
             repaint();
-       }
+        }
     }//GEN-LAST:event_formMouseDragged
 
     private void formMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_formMousePressed
-        if(selectedTool == "Ellipse" || selectedTool == "Rectangle" || selectedTool == "Select" || selectedTool == "Move")
-       {
+        if (selectedTool == "Ellipse" || selectedTool == "Rectangle" || selectedTool == "Select" || selectedTool == "Move")
+        {
             startX = evt.getX();
             startY = evt.getY();
             repaint();
-       }
+        }
     }//GEN-LAST:event_formMousePressed
 
     private void formMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_formMouseReleased
 
-        Figure figure = new Figure(null,0,0,0,0);
-        switch(this.selectedTool)
+        Figure figure = new Figure(null, 0, 0, 0, 0);
+        switch (this.selectedTool)
         {
-            case "Ellipse" :
-                figure = new Figure(Ellipse.getInstance(),startX,startY,endX,endY);
+            case "Ellipse":
+                figure = new Figure(Ellipse.getInstance(), startX, startY, endX, endY);
                 this.figures.add(figure);
                 break;
-            case "Rectangle" :
-                figure = new Figure(Rectangle.getInstance(),startX,startY,endX,endY);
+            case "Rectangle":
+                figure = new Figure(Rectangle.getInstance(), startX, startY, endX, endY);
                 this.figures.add(figure);
                 break;
-            case "Move" :
+            case "Move":
                 System.out.println("Move tool selected");
                 break;
-            case "Select" :
+            case "Select":
                 System.out.println("Select tool selected");
                 break;
             default:
                 System.out.println("No tool selected");
         }
         System.out.println(figures.size());
-        createNodes(root,figure);
-
+        createNodes(root, figure);
 
     }//GEN-LAST:event_formMouseReleased
 
     private void createNodes(DefaultMutableTreeNode top, Figure fig)
     {
-
-            DefaultMutableTreeNode child = new DefaultMutableTreeNode(fig.getTypeOfFigure() + " " + nodeIndex );
+        if (fig.getTypeOfFigure() != null)
+        {
+            DefaultMutableTreeNode child = new DefaultMutableTreeNode(fig.getTypeOfFigure() + " " + nodeIndex);
             top.add(child);
             nodeIndex++;
-
+        }
 
     }
 

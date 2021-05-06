@@ -12,6 +12,9 @@ import javax.swing.filechooser.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.StringTokenizer;
+import patternsCode.Ellipse;
+import patternsCode.Rectangle;
+import patternsCode.Strategy;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -31,11 +34,14 @@ public class FileHandler extends JPanel implements ActionListener
     JTextArea log;
     JFileChooser fc;
     public DrawPanel drawPanel;
-    public List<Figure> figuresToSave;
+    public List<Figure> figuresToSave = new ArrayList<Figure>();
+    JFrame frame = new JFrame("FileHandler");
 
     public FileHandler(DrawPanel drawPanel)
     {
+
         super(new BorderLayout());
+
         this.drawPanel = drawPanel;
         log = new JTextArea(5, 20);
         log.setMargin(new Insets(5, 5, 5, 5));
@@ -67,20 +73,21 @@ public class FileHandler extends JPanel implements ActionListener
                 try
                 {
                     LoadFromFile(file);
-                }
-                catch (IOException ex)
+
+                } catch (IOException ex)
+                {
+                    Logger.getLogger(FileHandler.class.getName()).log(Level.SEVERE, null, ex);
+                } catch (Exception ex)
                 {
                     Logger.getLogger(FileHandler.class.getName()).log(Level.SEVERE, null, ex);
                 }
 
                 log.append("Opening: " + file.getName() + "." + newLine);
-            }
-            else
+            } else
             {
                 log.append("cancelled" + newLine);
             }
-        }
-        else
+        } else
         {
             if (e.getSource() == saveButton)
             {
@@ -90,16 +97,16 @@ public class FileHandler extends JPanel implements ActionListener
                     try
                     {
                         SaveToFile(figuresToSave);
-                    }
-                    catch (IOException ex)
+                    } catch (IOException ex)
                     {
                         Logger.getLogger(FileHandler.class.getName()).log(Level.SEVERE, null, ex);
                     }
-                }
-                else
+                } else
                 {
+
                     log.append("cancelled" + newLine);
                 }
+
                 log.setCaretPosition(log.getDocument().getLength());
             }
         }
@@ -107,8 +114,7 @@ public class FileHandler extends JPanel implements ActionListener
 
     public void createAndShowGUI() throws IOException
     {
-        JFrame frame = new JFrame("FileHandler");
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         frame.add(new FileHandler(drawPanel));
         frame.pack();
         frame.setVisible(true);
@@ -138,48 +144,89 @@ public class FileHandler extends JPanel implements ActionListener
                 buff.write(endY + "\n");
                 buff.write("\n");
             }
-        }
-        catch (IOException ex)
+        } catch (IOException ex)
         {
             Logger.getLogger(FileHandler.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        finally
+        } finally
         {
             if (buff != null)
             {
                 buff.close();
             }
         }
+        this.frame.dispose();
     }
 
-    public void LoadFromFile(File fileToLoad) throws IOException
+    public void LoadFromFile(File fileToLoad) throws IOException, Exception
     {
         //figuresToSave.clear();
         List<Integer> list = new ArrayList<Integer>();
         BufferedReader in = null;
-        int startX = 0;
-        int startY = 0;
-        int endX = 0;
-        int endY = 0;
-
         try
         {
             in = new BufferedReader(new FileReader(fileToLoad.getPath()));
             String line = in.readLine();
+            String stringToPass = null;
             while ((line = in.readLine()) != null)
             {
                 if (!line.isEmpty())
                 {
-                    int i = Integer.parseInt(line.replaceAll("[^0-9]", ""));
-                    list.add(i);
+
+                    if (!line.contains("Ellipse") && !line.contains("Rectangle"))
+                    {
+                        int i = Integer.parseInt(line.replaceAll("[^0-9]", ""));
+                        list.add(i);
+                    }
+                    if (line.contains("Ellipse") || line.contains("Rectangle"))
+                    {
+                        stringToPass = line.replaceAll("[^A-Za-z]", "");
+                    }
+                }
+                if (stringToPass != null && list.size() >= 4)
+                {
+                    ConvertToFigure(list, stringToPass);
+                    list.clear();
+
                 }
 
             }
-        }
-        catch (IOException ex)
+
+            line = "";
+        } catch (IOException ex)
         {
 
         }
+        frame.dispose();
+    }
+
+    public void ConvertToFigure(List<Integer> coords, String FigureType) throws Exception
+    {
+
+        if (coords.size() >= 4)
+        {
+            int startX = coords.get(0);
+            int startY = coords.get(1);
+            int endX = coords.get(2);
+            int endY = coords.get(3);
+            switch (FigureType)
+            {
+                case "Ellipse":
+                    Figure ellipse = new Figure(Ellipse.getInstance(), startX, startY, endX, endY);
+                    figuresToSave.add(ellipse);
+                    break;
+                case "Rectangle":
+                    Figure rectangle = new Figure(Rectangle.getInstance(), startX, startY, endX, endY);
+                    figuresToSave.add(rectangle);
+                    break;
+
+                default:
+                    throw new Exception("Not a suitable figure");
+            }
+
+        }
+        drawPanel.figures = figuresToSave;
+        drawPanel.paintComponent(drawPanel.gc);
+        drawPanel.repaint();
     }
 
 }
