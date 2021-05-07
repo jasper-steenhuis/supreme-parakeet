@@ -61,6 +61,13 @@ public class DrawPanel extends javax.swing.JPanel
                     figure.endX += deltaX;
                     figure.endY += deltaY;
                 }
+                if (selectedTool == "Resize") 
+                {
+                    int deltaX = endX - oldEndX;
+                    int deltaY = endY - oldEndY;
+                    figure.endX += deltaX;
+                    figure.endY += deltaY;
+                }
             } else
             {
                 g.setColor(Color.BLACK);
@@ -78,6 +85,9 @@ public class DrawPanel extends javax.swing.JPanel
                     break;
                 case "Move":
                     System.out.println("Move tool selected");
+                    break;
+                case "Resize":
+                    System.out.println("Resize tool selected");
                     break;
                 case "Select":
                     System.out.println("Select tool selected");
@@ -121,6 +131,9 @@ public class DrawPanel extends javax.swing.JPanel
                 break;
             case "Move":
                 System.out.println("Move tool selected");
+                break;
+            case "Resize":
+                System.out.println("Resize tool selected");
                 break;
             case "Select":
                 g.setColor(Color.BLUE);
@@ -192,7 +205,7 @@ public class DrawPanel extends javax.swing.JPanel
     }// </editor-fold>//GEN-END:initComponents
 
     private void formMouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_formMouseDragged
-        if (selectedTool == "Ellipse" || selectedTool == "Rectangle" || selectedTool == "Select" || selectedTool == "Move")
+        if (selectedTool == "Ellipse" || selectedTool == "Rectangle" || selectedTool == "Select" || selectedTool == "Move" || selectedTool == "Resize")
         {
             endX = evt.getX();
             endY = evt.getY();
@@ -224,6 +237,9 @@ public class DrawPanel extends javax.swing.JPanel
                 break;
             case "Move":
                 System.out.println("Move tool selected");
+                break;
+            case "Resize":
+                System.out.println("Resize tool selected");
                 break;
             case "Select":
                 System.out.println("Select tool selected");
