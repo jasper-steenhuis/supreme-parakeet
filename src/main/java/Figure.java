@@ -13,15 +13,7 @@ import patternsCode.Strategy;
  *
  * @author caspe & Jasper
  */
-public class Figure {
-
-    public int startX;
-    public int startY;
-    public int endX;
-    public int endY;
-    public boolean selected;
-    public ArrayList<Figure> figures;
-    private String typeOfFigure;
+public class Figure extends FigureComponent {
     private Strategy strategy;
 
     public Figure(Strategy strategy, int startX, int startY, int endX, int endY) {
@@ -30,30 +22,34 @@ public class Figure {
         this.startY = startY;
         this.endX = endX;
         this.endY = endY;
-        this.selected = false;
-    }
-    
-    public Figure(Strategy strategy, ArrayList<Figure> figures) {
-        this.strategy = strategy;
-        this.startX = 0;
-        this.startY = 0;
-        this.endX = 0;
-        this.endY = 0;
-        this.selected = false;
-        this.figures = figures;
+        selected = false;
     }
 
     public int getWidth() {
-        return this.endX - this.startX;
+        return endX - startX;
     }
 
     public int getHeight() {
-        return this.endY - this.startY;
+        return endY - startY;
     }
 
     public String getTypeOfFigure() {
         return strategy.ObjectToString();
     }
-    
-    
+
+    public void displayFigureInfo(int depth) {
+        System.out.println(getTypeOfFigure() + " depth: " + depth);
+    }
+
+    public void move(int deltaX, int deltaY) {
+        startX += deltaX;
+        startY += deltaY;
+        endX += deltaX;
+        endY += deltaY;
+    }
+
+    public void resize(int deltaX, int deltaY) {
+        endX += deltaX;
+        endY += deltaY;
+    }
 }

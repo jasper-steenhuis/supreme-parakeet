@@ -122,7 +122,7 @@ public class FileHandler extends JPanel implements ActionListener
 
     public void SaveToFile(List<Figure> figuresToSave) throws IOException
     {
-        figuresToSave = drawPanel.figures;
+        figuresToSave = drawPanel.rootFigureGroup.getComponents();
         PrintWriter buff = null;
         File file = fc.getSelectedFile();
 
@@ -224,7 +224,7 @@ public class FileHandler extends JPanel implements ActionListener
             }
 
         }
-        drawPanel.figures = figuresToSave;
+        //drawPanel.rootFigureGroup = figuresToSave;
         drawPanel.paintComponent(drawPanel.gc);
         drawPanel.repaint();
     }

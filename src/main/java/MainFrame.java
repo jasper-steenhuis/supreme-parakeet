@@ -29,7 +29,7 @@ public class MainFrame extends javax.swing.JFrame {
     public MainFrame() {
         initComponents();
         drawPanel.setSelectedTool("Ellipse");
-        figures = drawPanel.figures;
+        //figures = drawPanel.figureGroup;
         //fileHandler.figuresToSave = drawPanel.figures;
 
         jTree1.setModel(drawPanel.model);
@@ -211,6 +211,7 @@ public class MainFrame extends javax.swing.JFrame {
     {//GEN-HEADEREND:event_saveButtonActionPerformed
         FileHandler fileHandler = new FileHandler(drawPanel);
         try {
+            drawPanel.rootFigureGroup.displayFigureInfo(0);
             //fileHandler.Save(drawPanel.figures);
             fileHandler.createAndShowGUI();
         } catch (IOException ex) {
