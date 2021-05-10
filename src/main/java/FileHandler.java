@@ -128,17 +128,7 @@ public class FileHandler extends JPanel implements ActionListener
             buff = new PrintWriter(new FileWriter(file.getPath() + ".txt"));
             for (int i = 0; i < drawPanel.rootFigureGroup.getComponents().size(); i++)
             {
-                int startX = drawPanel.rootFigureGroup.getComponent(i).getStartX();
-                int startY = drawPanel.rootFigureGroup.getComponent(i).getStartY();
-                int endX = drawPanel.rootFigureGroup.getComponent(i).getEndX();
-                int endY = drawPanel.rootFigureGroup.getComponent(i).getEndY();
-
-                buff.write(drawPanel.rootFigureGroup.getComponent(i).getTypeOfFigure() + " " + i + newLine);
-                buff.write(startX + newLine);
-                buff.write(startY + newLine);
-                buff.write(endX + newLine);
-                buff.write(endY + newLine);
-                buff.write(newLine);
+                drawPanel.rootFigureGroup.getComponent(i).write(buff, 0);
             }
         } catch (IOException ex)
         {
@@ -151,6 +141,10 @@ public class FileHandler extends JPanel implements ActionListener
             }
         }
 
+    }
+    
+    public void writeGroup() {
+        
     }
 
     public void LoadFromFile(File fileToLoad) throws IOException

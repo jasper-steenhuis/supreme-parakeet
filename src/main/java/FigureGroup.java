@@ -8,6 +8,7 @@
  *
  * @author caspe
  */
+import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.Iterator;
 
@@ -60,7 +61,22 @@ public class FigureGroup extends FigureComponent {
         }
     }
 
+    public int getNumberOfChildren() {
+        return figureComponents.size();
+    }
+
     public String getTypeOfFigure() {
         return "Group";
+    }
+
+    public void write(PrintWriter buff, int depth) {
+        for (int i = 0; i < depth; i++) {
+            buff.write("\t");
+        }
+        buff.write(getTypeOfFigure() + " " + getNumberOfChildren() + "\n");
+        depth++;
+        for (int i = 0; i < getComponents().size(); i++) {
+            getComponent(i).write(buff, depth);
+        }
     }
 }

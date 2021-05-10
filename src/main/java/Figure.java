@@ -1,5 +1,6 @@
 
 import java.awt.Graphics;
+import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.List;
 import patternsCode.Strategy;
@@ -14,6 +15,7 @@ import patternsCode.Strategy;
  * @author caspe & Jasper
  */
 public class Figure extends FigureComponent {
+
     private Strategy strategy;
 
     public Figure(Strategy strategy, int startX, int startY, int endX, int endY) {
@@ -52,4 +54,12 @@ public class Figure extends FigureComponent {
         endX += deltaX;
         endY += deltaY;
     }
+
+    public void write(PrintWriter buff, int depth) {
+        for (int i = 0; i < depth; i++) {
+            buff.write("\t");
+        }
+        buff.write(getTypeOfFigure() + " " + startX + " " + startY + " " + getWidth() + " " + getHeight() + "\n");
+    }
+
 }

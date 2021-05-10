@@ -1,4 +1,5 @@
 
+import java.io.PrintWriter;
 import java.util.ArrayList;
 
 /*
@@ -83,6 +84,14 @@ public abstract class FigureComponent {
     }
 
     public String getTypeOfFigure() {
+        throw new UnsupportedOperationException();
+    }
+
+    public int getNumberOfChildren() {
+        throw new UnsupportedOperationException();
+    }
+
+    public void write(PrintWriter buff, int depth) {
         throw new UnsupportedOperationException();
     }
 }
