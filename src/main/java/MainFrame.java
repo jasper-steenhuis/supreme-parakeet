@@ -31,7 +31,7 @@ public class MainFrame extends javax.swing.JFrame
     {
         initComponents();
         drawPanel.setSelectedTool("Ellipse");
-        figures = drawPanel.figures;
+        //figures = drawPanel.figureGroup;
         //fileHandler.figuresToSave = drawPanel.figures;
 
         jTree1.setModel(drawPanel.model);
@@ -211,9 +211,9 @@ public class MainFrame extends javax.swing.JFrame
 
     private void saveButtonActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_saveButtonActionPerformed
     {//GEN-HEADEREND:event_saveButtonActionPerformed
+
         FileGUI fileGUI = new FileGUI(new FileHandler(drawPanel));
         fileGUI.execute();
-
     }//GEN-LAST:event_saveButtonActionPerformed
 
     private void resizebtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_resizebtnActionPerformed

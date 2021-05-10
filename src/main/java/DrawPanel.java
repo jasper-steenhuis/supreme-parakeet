@@ -28,13 +28,14 @@ public class DrawPanel extends javax.swing.JPanel
 
     private int startX, startY, endX, endY;
     private int oldEndX, oldEndY;
-    public List<Figure> figures = new ArrayList<Figure>();
+    public FigureComponent rootFigureGroup = new FigureGroup("DrawPanel");
     public DefaultMutableTreeNode root = new DefaultMutableTreeNode("Figures");
     public TreeModel model = new DefaultTreeModel(root);
     public TreeModelEvent t;
     private String selectedTool = "Oval";
     int nodeIndex = 0;
     public Graphics gc;
+    private int groupCount = 1;
 
     /**
      * Creates new form DrawPanel
@@ -47,41 +48,38 @@ public class DrawPanel extends javax.swing.JPanel
 
     public void draw(Graphics g, List<Figure> figures)
     {
-        for (Figure figure : figures)
+        for (FigureComponent figureComponent : figures)
         {
-            if (figure.selected)
+            if (figureComponent.isSelected() && figureComponent instanceof Figure)
             {
-                g.setColor(Color.RED);
-                if (selectedTool == "Move")
-                {
-                    int deltaX = endX - oldEndX;
-                    int deltaY = endY - oldEndY;
-                    figure.startX += deltaX;
-                    figure.startY += deltaY;
-                    figure.endX += deltaX;
-                    figure.endY += deltaY;
-                }
-                if (selectedTool == "Resize") 
-                {
-                    int deltaX = endX - oldEndX;
-                    int deltaY = endY - oldEndY;
-                    figure.endX += deltaX;
-                    figure.endY += deltaY;
-                }
+                    g.setColor(Color.RED);
+                    if (selectedTool == "Move")
+                    {
+                        int deltaX = endX - oldEndX;
+                        int deltaY = endY - oldEndY;
+                        figureComponent.move(deltaX, deltaY);
+                    }
+                    if (selectedTool == "Resize") 
+                    {
+                        int deltaX = endX - oldEndX;
+                        int deltaY = endY - oldEndY;
+                        figureComponent.resize(deltaX, deltaY);
+                    }
+
             } else
             {
                 g.setColor(Color.BLACK);
             }
-            switch (figure.getTypeOfFigure())
+            switch (figureComponent.getTypeOfFigure())
             {
                 case "Ellipse":
-                    g.drawOval(figure.startX, figure.startY, figure.getWidth(), figure.getHeight());
+                    g.drawOval(figureComponent.getStartX(), figureComponent.getStartY(), figureComponent.getWidth(), figureComponent.getHeight());
                     break;
                 case "Rectangle":
-                    g.drawRect(figure.startX, figure.startY, figure.getWidth(), figure.getHeight());
+                    g.drawRect(figureComponent.getStartX(), figureComponent.getStartY(), figureComponent.getWidth(), figureComponent.getHeight());
                     break;
                 case "Group":
-                    this.draw(g, figure.figures);
+                    this.draw(g, figureComponent.getComponents());
                     break;
                 case "Move":
                     System.out.println("Move tool selected");
@@ -97,12 +95,12 @@ public class DrawPanel extends javax.swing.JPanel
             }
             if (this.selectedTool == "Select")
             {
-                if (figure.endX < endX && figure.endY < endY && figure.startX > startX && figure.startY > startY)
+                if (figureComponent.getEndX() < endX && figureComponent.getEndY() < endY && figureComponent.getStartX() > startX && figureComponent.getStartY() > startY)
                 {
-                    figure.selected = true;
+                    figureComponent.setSelected(true);
                 } else
                 {
-                    figure.selected = false;
+                    figureComponent.setSelected(false);
                 }
             }
         }
@@ -113,13 +111,8 @@ public class DrawPanel extends javax.swing.JPanel
     {
         gc = g;
         super.paintComponent(gc); //To change body of generated methods, choose Tools | Templates.
-        System.out.println("Repaint");
-        for (Figure figure : figures)
-        {
-            System.out.println(figure.getTypeOfFigure());
-        }
 
-        draw(gc, figures);
+        draw(gc, rootFigureGroup.getComponents());
 
         switch (this.selectedTool)
         {
@@ -130,10 +123,8 @@ public class DrawPanel extends javax.swing.JPanel
                 g.drawRect(startX, startY, endX - startX, endY - startY);
                 break;
             case "Move":
-                System.out.println("Move tool selected");
                 break;
             case "Resize":
-                System.out.println("Resize tool selected");
                 break;
             case "Select":
                 g.setColor(Color.BLUE);
@@ -154,19 +145,23 @@ public class DrawPanel extends javax.swing.JPanel
 
     public void group()
     {
-        ArrayList<Figure> arrayListGroup = new ArrayList<Figure>();
-        int startX = 0, startY = 0, endX = 0, endY = 0;
-        for (Iterator<Figure> it = figures.iterator(); it.hasNext();)
+        FigureComponent figureGroup = new FigureGroup("group " + this.groupCount);
+        
+        ArrayList rootGroup = rootFigureGroup.getComponents();
+
+        for (Iterator<Figure> it = rootGroup.iterator(); it.hasNext();)
         {
-            Figure figure = it.next();
-            if (figure.selected)
+            FigureComponent figureComponent = it.next();
+            if (figureComponent.isSelected())
             {
-                arrayListGroup.add(figure);
+                figureGroup.add(figureComponent);
                 it.remove();
             }
         }
-        Figure figureGroup = new Figure(Group.getInstance(), arrayListGroup);
-        figures.add(figureGroup);
+
+        this.rootFigureGroup.add(figureGroup);
+        this.groupCount++;
+        rootFigureGroup.displayFigureInfo(0);
     }
 
     /**
@@ -229,11 +224,11 @@ public class DrawPanel extends javax.swing.JPanel
         {
             case "Ellipse":
                 figure = new Figure(Ellipse.getInstance(), startX, startY, endX, endY);
-                this.figures.add(figure);
+                this.rootFigureGroup.add(figure);
                 break;
             case "Rectangle":
                 figure = new Figure(Rectangle.getInstance(), startX, startY, endX, endY);
-                this.figures.add(figure);
+                this.rootFigureGroup.add(figure);
                 break;
             case "Move":
                 System.out.println("Move tool selected");
@@ -247,7 +242,6 @@ public class DrawPanel extends javax.swing.JPanel
             default:
                 System.out.println("No tool selected");
         }
-        System.out.println(figures.size());
         createNodes(root, figure);
 
     }//GEN-LAST:event_formMouseReleased
