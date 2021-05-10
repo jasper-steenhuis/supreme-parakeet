@@ -3,7 +3,6 @@ import java.awt.Graphics;
 import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.List;
-import patternsCode.Strategy;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -61,5 +60,8 @@ public class Figure extends FigureComponent {
         }
         buff.write(getTypeOfFigure() + " " + startX + " " + startY + " " + getWidth() + " " + getHeight() + "\n");
     }
-
+    
+    public void draw(Graphics g) {
+        strategy.draw(g, getStartX(), getStartY(), getWidth(), getHeight());
+    }
 }

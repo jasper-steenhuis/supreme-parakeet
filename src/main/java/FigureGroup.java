@@ -8,6 +8,7 @@
  *
  * @author caspe
  */
+import java.awt.Graphics;
 import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -77,6 +78,12 @@ public class FigureGroup extends FigureComponent {
         depth++;
         for (int i = 0; i < getComponents().size(); i++) {
             getComponent(i).write(buff, depth);
+        }
+    }
+
+    public void draw(Graphics g) {
+        for (int i = 0; i < getComponents().size(); i++) {
+            getComponent(i).draw(g);
         }
     }
 }

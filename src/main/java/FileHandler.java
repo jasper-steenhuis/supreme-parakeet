@@ -12,10 +12,6 @@ import javax.swing.filechooser.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.StringTokenizer;
-import patternsCode.Ellipse;
-import patternsCode.Rectangle;
-import patternsCode.Strategy;
-
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates

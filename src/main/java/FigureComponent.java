@@ -1,4 +1,5 @@
 
+import java.awt.Graphics;
 import java.io.PrintWriter;
 import java.util.ArrayList;
 
@@ -41,6 +42,10 @@ public abstract class FigureComponent {
 
     public void setSelected(boolean selected) {
         this.selected = selected;
+    }
+    
+    public void draw(Graphics g) {
+        throw new UnsupportedOperationException();
     }
 
     public void add(FigureComponent newFigureComponent) {

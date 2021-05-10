@@ -1,33 +1,38 @@
+
+import java.awt.Graphics;
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package patternsCode;
+
 
 /**
  *
  * @author Jasper
  */
-public class Ellipse implements Strategy
+public class Group implements Strategy
 {
-    private String name = "Ellipse";
-    private static Ellipse instance = new Ellipse();
+    private String name = "Group";
+    private static Group instance = new Group();
+    
     @Override
-    public void draw()
+    public void draw(Graphics g, int startX, int startY, int width, int height)
     {
-
+        
     }
+    
     @Override
     public String ObjectToString()
     {
         return instance.name;
     }
-    private Ellipse()
+    private Group()
     {
 
     }
-    public static Ellipse getInstance()
+    public static Group getInstance()
     {
         return instance;
     } 
