@@ -126,14 +126,14 @@ public class FileHandler extends JPanel implements ActionListener
         try
         {
             buff = new PrintWriter(new FileWriter(file.getPath() + ".txt"));
-            for (int i = 0; i < drawPanel.figures.size(); i++)
+            for (int i = 0; i < drawPanel.rootFigureGroup.getComponents().size(); i++)
             {
-                int startX = drawPanel.figures.get(i).startX;
-                int startY = drawPanel.figures.get(i).startY;
-                int endX = drawPanel.figures.get(i).endX;
-                int endY = drawPanel.figures.get(i).endY;
+                int startX = drawPanel.rootFigureGroup.getComponent(i).getStartX();
+                int startY = drawPanel.rootFigureGroup.getComponent(i).getStartY();
+                int endX = drawPanel.rootFigureGroup.getComponent(i).getEndX();
+                int endY = drawPanel.rootFigureGroup.getComponent(i).getEndY();
 
-                buff.write(drawPanel.figures.get(i).getTypeOfFigure() + " " + i + newLine);
+                buff.write(drawPanel.rootFigureGroup.getComponent(i).getTypeOfFigure() + " " + i + newLine);
                 buff.write(startX + newLine);
                 buff.write(startY + newLine);
                 buff.write(endX + newLine);
@@ -208,11 +208,11 @@ public class FileHandler extends JPanel implements ActionListener
             {
                 case "Ellipse":
                     Figure ellipse = new Figure(Ellipse.getInstance(), startX, startY, endX, endY);
-                    figuresToSave.add(ellipse);
+                    drawPanel.rootFigureGroup.add(ellipse);
                     break;
                 case "Rectangle":
                     Figure rectangle = new Figure(Rectangle.getInstance(), startX, startY, endX, endY);
-                    figuresToSave.add(rectangle);
+                    drawPanel.rootFigureGroup.add(rectangle);
                     break;
 
                 default:
@@ -220,7 +220,7 @@ public class FileHandler extends JPanel implements ActionListener
             }
 
         }
-        //drawPanel.rootFigureGroup = figuresToSave;
+
         drawPanel.paintComponent(drawPanel.gc);
         drawPanel.repaint();
     }

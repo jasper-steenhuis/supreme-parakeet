@@ -1,13 +1,10 @@
-LoadFile.class
 MainFrame$8.class
-FileBroker.class
 FileGUI.class
 MainFrame$2.class
 patternsCode\Strategy.class
-SaveFile.class
-Command.class
 FigureComponent.class
 FigureComponent2.class
+Command.class
 DrawPanel$2.class
 FileHandler.class
 MainFrame$1.class
