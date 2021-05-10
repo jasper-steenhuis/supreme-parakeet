@@ -77,11 +77,7 @@ public class FileHandler extends JPanel implements ActionListener
                 } catch (IOException ex)
                 {
                     Logger.getLogger(FileHandler.class.getName()).log(Level.SEVERE, null, ex);
-                } catch (Exception ex)
-                {
-                    Logger.getLogger(FileHandler.class.getName()).log(Level.SEVERE, null, ex);
                 }
-
                 log.append("Opening: " + file.getName() + "." + newLine);
             } else
             {
@@ -96,8 +92,9 @@ public class FileHandler extends JPanel implements ActionListener
                 {
                     try
                     {
-                        SaveToFile(figuresToSave);
-                    } catch (IOException ex)
+                        SaveToFile();
+                    }
+                    catch (IOException ex)
                     {
                         Logger.getLogger(FileHandler.class.getName()).log(Level.SEVERE, null, ex);
                     }
@@ -120,9 +117,8 @@ public class FileHandler extends JPanel implements ActionListener
         frame.setVisible(true);
     }
 
-    public void SaveToFile(List<Figure> figuresToSave) throws IOException
+    public void SaveToFile() throws IOException
     {
-        figuresToSave = drawPanel.figures;
         PrintWriter buff = null;
         File file = fc.getSelectedFile();
 
@@ -130,19 +126,19 @@ public class FileHandler extends JPanel implements ActionListener
         try
         {
             buff = new PrintWriter(new FileWriter(file.getPath() + ".txt"));
-            for (int i = 0; i < figuresToSave.size(); i++)
+            for (int i = 0; i < drawPanel.figures.size(); i++)
             {
-                int startX = figuresToSave.get(i).startX;
-                int startY = figuresToSave.get(i).startY;
-                int endX = figuresToSave.get(i).endX;
-                int endY = figuresToSave.get(i).endY;
+                int startX = drawPanel.figures.get(i).startX;
+                int startY = drawPanel.figures.get(i).startY;
+                int endX = drawPanel.figures.get(i).endX;
+                int endY = drawPanel.figures.get(i).endY;
 
-                buff.write(figuresToSave.get(i).getTypeOfFigure() + " " + i + "\n");
-                buff.write(startX + "\n");
-                buff.write(startY + "\n");
-                buff.write(endX + "\n");
-                buff.write(endY + "\n");
-                buff.write("\n");
+                buff.write(drawPanel.figures.get(i).getTypeOfFigure() + " " + i + newLine);
+                buff.write(startX + newLine);
+                buff.write(startY + newLine);
+                buff.write(endX + newLine);
+                buff.write(endY + newLine);
+                buff.write(newLine);
             }
         } catch (IOException ex)
         {
@@ -154,10 +150,10 @@ public class FileHandler extends JPanel implements ActionListener
                 buff.close();
             }
         }
-        this.frame.dispose();
+
     }
 
-    public void LoadFromFile(File fileToLoad) throws IOException, Exception
+    public void LoadFromFile(File fileToLoad) throws IOException
     {
         //figuresToSave.clear();
         List<Integer> list = new ArrayList<Integer>();
@@ -199,7 +195,7 @@ public class FileHandler extends JPanel implements ActionListener
         frame.dispose();
     }
 
-    public void ConvertToFigure(List<Integer> coords, String FigureType) throws Exception
+    public void ConvertToFigure(List<Integer> coords, String FigureType)
     {
 
         if (coords.size() >= 4)
@@ -220,7 +216,7 @@ public class FileHandler extends JPanel implements ActionListener
                     break;
 
                 default:
-                    throw new Exception("Not a suitable figure");
+                    return;
             }
 
         }
