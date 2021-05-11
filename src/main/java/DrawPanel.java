@@ -66,7 +66,11 @@ public class DrawPanel extends javax.swing.JPanel
             }
             
             figureComponent.draw(g);
-            figureComponent.setSelected(false);
+            
+            if (this.selectedTool != "Move" && selectedTool != "Resize") {
+                figureComponent.setSelected(false);
+            }
+            
             if (this.selectedTool == "Select")
             {
                 if (figureComponent.getEndX() < endX && figureComponent.getEndY() < endY && figureComponent.getStartX() > startX && figureComponent.getStartY() > startY)
