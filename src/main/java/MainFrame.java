@@ -22,7 +22,7 @@ import javax.swing.tree.TreeModel;
 public class MainFrame extends javax.swing.JFrame
 {
 
-    private List<Figure> figures = new ArrayList<Figure>();
+    private List<PlainFigure> figures = new ArrayList<PlainFigure>();
 
     /**
      * Creates new form MainFrame
@@ -58,6 +58,7 @@ public class MainFrame extends javax.swing.JFrame
         jButtonGroup = new javax.swing.JButton();
         saveButton = new javax.swing.JButton();
         resizebtn = new javax.swing.JRadioButton();
+        jButtonGroup1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -133,6 +134,13 @@ public class MainFrame extends javax.swing.JFrame
             }
         });
 
+        jButtonGroup1.setText("Label");
+        jButtonGroup1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonGroup1ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -140,7 +148,9 @@ public class MainFrame extends javax.swing.JFrame
             .addGroup(layout.createSequentialGroup()
                 .addGap(23, 23, 23)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(drawPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(drawPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGap(117, 117, 117))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jRadioButtonOval)
                         .addGap(18, 18, 18)
@@ -153,11 +163,12 @@ public class MainFrame extends javax.swing.JFrame
                         .addComponent(resizebtn)
                         .addGap(14, 14, 14)
                         .addComponent(jButtonGroup)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 8, Short.MAX_VALUE)
+                        .addComponent(jButtonGroup1)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(saveButton)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 18, Short.MAX_VALUE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)))
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -171,10 +182,11 @@ public class MainFrame extends javax.swing.JFrame
                             .addComponent(jRadioButtonOval)
                             .addComponent(jRadioButtonRect)
                             .addComponent(jButtonGroup)
-                            .addComponent(saveButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(resizebtn)
                             .addComponent(selectButton)
-                            .addComponent(moveButton))
+                            .addComponent(moveButton)
+                            .addComponent(saveButton)
+                            .addComponent(jButtonGroup1))
                         .addGap(30, 30, 30)
                         .addComponent(drawPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addContainerGap(27, Short.MAX_VALUE))
@@ -219,6 +231,11 @@ public class MainFrame extends javax.swing.JFrame
     private void resizebtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_resizebtnActionPerformed
         drawPanel.setSelectedTool("Resize");
     }//GEN-LAST:event_resizebtnActionPerformed
+
+    private void jButtonGroup1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonGroup1ActionPerformed
+        //open textfield gui
+        drawPanel.addOrnament();
+    }//GEN-LAST:event_jButtonGroup1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -272,6 +289,7 @@ public class MainFrame extends javax.swing.JFrame
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private DrawPanel drawPanel;
     private javax.swing.JButton jButtonGroup;
+    private javax.swing.JButton jButtonGroup1;
     private javax.swing.JRadioButton jRadioButtonOval;
     private javax.swing.JRadioButton jRadioButtonRect;
     private javax.swing.JScrollPane jScrollPane1;

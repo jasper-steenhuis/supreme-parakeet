@@ -30,7 +30,7 @@ public class FileHandler extends JPanel implements ActionListener
     JTextArea log;
     JFileChooser fc;
     public DrawPanel drawPanel;
-    public List<Figure> figuresToSave = new ArrayList<Figure>();
+    public List<PlainFigure> figuresToSave = new ArrayList<PlainFigure>();
     JFrame frame = new JFrame("FileHandler");
 
     public FileHandler(DrawPanel drawPanel)
@@ -197,11 +197,11 @@ public class FileHandler extends JPanel implements ActionListener
             switch (FigureType)
             {
                 case "Ellipse":
-                    Figure ellipse = new Figure(Ellipse.getInstance(), startX, startY, endX, endY);
+                    PlainFigure ellipse = new PlainFigure(Ellipse.getInstance(), startX, startY, endX, endY);
                     drawPanel.rootFigureGroup.add(ellipse);
                     break;
                 case "Rectangle":
-                    Figure rectangle = new Figure(Rectangle.getInstance(), startX, startY, endX, endY);
+                    PlainFigure rectangle = new PlainFigure(Rectangle.getInstance(), startX, startY, endX, endY);
                     drawPanel.rootFigureGroup.add(rectangle);
                     break;
 

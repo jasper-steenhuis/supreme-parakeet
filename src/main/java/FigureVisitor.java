@@ -25,7 +25,7 @@ public class FigureVisitor implements Visitor {
     }
 
     @Override
-    public void visit(Ornament ornament) {
+    public void visit(Figure ornament) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     

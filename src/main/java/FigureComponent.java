@@ -12,7 +12,7 @@ import java.util.ArrayList;
  *
  * @author caspe
  */
-public abstract class FigureComponent {
+public abstract class FigureComponent implements Figure {
 
     int startX;
     int startY;
@@ -43,7 +43,11 @@ public abstract class FigureComponent {
     public void setSelected(boolean selected) {
         this.selected = selected;
     }
-    
+
+    public Strategy getStrategy() {
+        throw new UnsupportedOperationException();
+    }
+
     public void draw(Graphics g) {
         throw new UnsupportedOperationException();
     }
@@ -61,10 +65,6 @@ public abstract class FigureComponent {
     }
 
     public ArrayList getComponents() {
-        throw new UnsupportedOperationException();
-    }
-
-    public String getFigureType() {
         throw new UnsupportedOperationException();
     }
 

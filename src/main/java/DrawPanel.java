@@ -43,12 +43,12 @@ public class DrawPanel extends javax.swing.JPanel
 
     }
 
-    public void draw(Graphics g, List<Figure> figures)
+    public void draw(Graphics g, List<PlainFigure> figures)
     {
         for (FigureComponent figureComponent : figures)
         {
             g.setColor(Color.BLACK);
-            if (figureComponent.isSelected() && figureComponent instanceof Figure)
+            if (figureComponent.isSelected() && figureComponent instanceof PlainFigure)
             {
                 g.setColor(Color.RED);
                 if (selectedTool == "Move")
@@ -120,7 +120,7 @@ public class DrawPanel extends javax.swing.JPanel
         
         ArrayList rootGroup = rootFigureGroup.getComponents();
 
-        for (Iterator<Figure> it = rootGroup.iterator(); it.hasNext();)
+        for (Iterator<PlainFigure> it = rootGroup.iterator(); it.hasNext();)
         {
             FigureComponent figureComponent = it.next();
             if (figureComponent.isSelected())
@@ -190,15 +190,15 @@ public class DrawPanel extends javax.swing.JPanel
 
     private void formMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_formMouseReleased
 
-        Figure figure = new Figure(null, 0, 0, 0, 0);
+        PlainFigure figure = new PlainFigure(null, 0, 0, 0, 0);
         switch (this.selectedTool)
         {
             case "Ellipse":
-                figure = new Figure(Ellipse.getInstance(), startX, startY, endX, endY);
+                figure = new PlainFigure(Ellipse.getInstance(), startX, startY, endX, endY);
                 this.rootFigureGroup.add(figure);
                 break;
             case "Rectangle":
-                figure = new Figure(Rectangle.getInstance(), startX, startY, endX, endY);
+                figure = new PlainFigure(Rectangle.getInstance(), startX, startY, endX, endY);
                 this.rootFigureGroup.add(figure);
                 break;
             default:
@@ -207,7 +207,7 @@ public class DrawPanel extends javax.swing.JPanel
         createNodes(root, figure);
     }//GEN-LAST:event_formMouseReleased
 
-    private void createNodes(DefaultMutableTreeNode top, Figure fig)
+    private void createNodes(DefaultMutableTreeNode top, PlainFigure fig)
     {
         if (fig.getTypeOfFigure() != null)
         {
@@ -217,7 +217,24 @@ public class DrawPanel extends javax.swing.JPanel
         }
 
     }
-
+    
+    public void addOrnament()
+    {       
+        ArrayList rootGroup = rootFigureGroup.getComponents();
+        FigureComponent newFigureComponent = null;
+        for (Iterator<PlainFigure> it = rootGroup.iterator(); it.hasNext();)
+        {
+            FigureComponent figureComponent = it.next();
+            if (figureComponent.isSelected())
+            {
+                newFigureComponent = new TopOrnament(new PlainFigure(figureComponent.getStrategy(), figureComponent.getStartX(), figureComponent.getStartY(), figureComponent.getEndX(), figureComponent.getEndY()));
+                System.out.println(figureComponent.getStartX() + " " + figureComponent.getStartY());
+                
+            }
+        }
+        rootFigureGroup.add(newFigureComponent);
+        rootFigureGroup.displayFigureInfo(0);
+    }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     // End of variables declaration//GEN-END:variables
 }

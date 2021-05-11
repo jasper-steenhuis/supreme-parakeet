@@ -13,5 +13,5 @@ public interface Visitor {
 
     public void visit(Ellipse ellipse);
     public void visit(Rectangle rectangle);
-    public void visit(Ornament ornament);
+    public void visit(Figure ornament);
 }
