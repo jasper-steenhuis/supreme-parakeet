@@ -7,6 +7,9 @@ import javax.swing.event.TreeModelEvent;
 import javax.swing.tree.DefaultMutableTreeNode;
 import javax.swing.tree.DefaultTreeModel;
 import javax.swing.tree.TreeModel;
+import patternsCode.Ellipse;
+import patternsCode.Group;
+import patternsCode.Rectangle;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -47,23 +50,55 @@ public class DrawPanel extends javax.swing.JPanel
     {
         for (FigureComponent figureComponent : figures)
         {
+<<<<<<< HEAD
             g.setColor(Color.BLACK);
             if (figureComponent.isSelected() && figureComponent instanceof PlainFigure)
+=======
+            if (figureComponent.isSelected() && figureComponent instanceof Figure)
+>>>>>>> parent of 24947e0 (kinda visitor)
             {
-                g.setColor(Color.RED);
-                if (selectedTool == "Move")
-                {
-                    int deltaX = endX - oldEndX;
-                    int deltaY = endY - oldEndY;
-                    figureComponent.move(deltaX, deltaY);
-                }
-                if (selectedTool == "Resize") 
-                {
-                    int deltaX = endX - oldEndX;
-                    int deltaY = endY - oldEndY;
-                    figureComponent.resize(deltaX, deltaY);
-                }
+                    g.setColor(Color.RED);
+                    if (selectedTool == "Move")
+                    {
+                        int deltaX = endX - oldEndX;
+                        int deltaY = endY - oldEndY;
+                        figureComponent.move(deltaX, deltaY);
+                    }
+                    if (selectedTool == "Resize") 
+                    {
+                        int deltaX = endX - oldEndX;
+                        int deltaY = endY - oldEndY;
+                        figureComponent.resize(deltaX, deltaY);
+                    }
+
+            } else
+            {
+                g.setColor(Color.BLACK);
             }
+            switch (figureComponent.getTypeOfFigure())
+            {
+                case "Ellipse":
+                    g.drawOval(figureComponent.getStartX(), figureComponent.getStartY(), figureComponent.getWidth(), figureComponent.getHeight());
+                    break;
+                case "Rectangle":
+                    g.drawRect(figureComponent.getStartX(), figureComponent.getStartY(), figureComponent.getWidth(), figureComponent.getHeight());
+                    break;
+                case "Group":
+                    this.draw(g, figureComponent.getComponents());
+                    break;
+                case "Move":
+                    System.out.println("Move tool selected");
+                    break;
+                case "Resize":
+                    System.out.println("Resize tool selected");
+                    break;
+                case "Select":
+                    System.out.println("Select tool selected");
+                    break;
+                default:
+                    System.out.println("No tool selected");
+            }
+<<<<<<< HEAD
             
             figureComponent.draw(g);
             
@@ -71,11 +106,16 @@ public class DrawPanel extends javax.swing.JPanel
                 figureComponent.setSelected(false);
             }
             
+=======
+>>>>>>> parent of 24947e0 (kinda visitor)
             if (this.selectedTool == "Select")
             {
                 if (figureComponent.getEndX() < endX && figureComponent.getEndY() < endY && figureComponent.getStartX() > startX && figureComponent.getStartY() > startY)
                 {
                     figureComponent.setSelected(true);
+                } else
+                {
+                    figureComponent.setSelected(false);
                 }
             }
         }
@@ -97,6 +137,10 @@ public class DrawPanel extends javax.swing.JPanel
             case "Rectangle":
                 g.drawRect(startX, startY, endX - startX, endY - startY);
                 break;
+            case "Move":
+                break;
+            case "Resize":
+                break;
             case "Select":
                 g.setColor(Color.BLUE);
                 g.drawRect(startX, startY, endX - startX, endY - startY);
@@ -104,7 +148,7 @@ public class DrawPanel extends javax.swing.JPanel
             default:
                 System.out.println("No tool selected");
         }
-        
+
         oldEndX = endX;
         oldEndY = endY;
     }
@@ -201,10 +245,20 @@ public class DrawPanel extends javax.swing.JPanel
                 figure = new PlainFigure(Rectangle.getInstance(), startX, startY, endX, endY);
                 this.rootFigureGroup.add(figure);
                 break;
+            case "Move":
+                System.out.println("Move tool selected");
+                break;
+            case "Resize":
+                System.out.println("Resize tool selected");
+                break;
+            case "Select":
+                System.out.println("Select tool selected");
+                break;
             default:
                 System.out.println("No tool selected");
         }
         createNodes(root, figure);
+
     }//GEN-LAST:event_formMouseReleased
 
     private void createNodes(DefaultMutableTreeNode top, PlainFigure fig)

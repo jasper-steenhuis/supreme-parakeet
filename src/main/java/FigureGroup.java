@@ -8,7 +8,6 @@
  *
  * @author caspe
  */
-import java.awt.Graphics;
 import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -80,6 +79,7 @@ public class FigureGroup extends FigureComponent {
             getComponent(i).write(buff, depth);
         }
     }
+<<<<<<< HEAD
 
     public void draw(Graphics g) {
         for (int i = 0; i < getComponents().size(); i++) {
@@ -91,4 +91,6 @@ public class FigureGroup extends FigureComponent {
     public String getDescription() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
+=======
+>>>>>>> parent of 24947e0 (kinda visitor)
 }

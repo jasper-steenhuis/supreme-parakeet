@@ -1,5 +1,4 @@
 
-import java.awt.Graphics;
 import java.io.PrintWriter;
 import java.util.ArrayList;
 
@@ -43,6 +42,7 @@ public abstract class FigureComponent implements Figure {
     public void setSelected(boolean selected) {
         this.selected = selected;
     }
+<<<<<<< HEAD
 
     public Strategy getStrategy() {
         throw new UnsupportedOperationException();
@@ -51,6 +51,8 @@ public abstract class FigureComponent implements Figure {
     public void draw(Graphics g) {
         throw new UnsupportedOperationException();
     }
+=======
+>>>>>>> parent of 24947e0 (kinda visitor)
 
     public void add(FigureComponent newFigureComponent) {
         throw new UnsupportedOperationException();
